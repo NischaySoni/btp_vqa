@@ -8,7 +8,8 @@ This is the reasoning half of the agreed methodology (`docs/research_plan.md` §
 | `baselines.py` | Blind baselines: the most frequent training answer per intent (lower bound) |
 | `scene.py` | Label map → scene description: class shares, plus building instances, each flagged flooded or not |
 | `reason.py` | One readable rule per intent, with one parameter fitted on training rows only (a threshold, or a min area plus optional merged-blob splitting for counts) |
-| `run_masks.py` | Runs scene + reason on ground-truth labels (`--labels gt`, the oracle) or on a directory of predicted labels (e.g. `runs/seg_oof/preds`) |
+| `run_masks.py` | Runs scene + reason on ground-truth labels (`--labels gt`, the oracle) or on a directory of predicted labels. `--fit own` calibrates on the dataset's own training rows; `--fit floodnet` uses FloodNet-fitted parameters unchanged (zero-shot transfer). Intents the classes can't express fall back to the blind prior and are flagged `how=prior` in the output |
+| `predict_cpu.py` | Predicted FloodNet-class masks on CPU (about 15 s/image) with a trained segmenter. `runs/seg_all` is only for non-FloodNet datasets, because it trained on the FloodNet VQA images |
 | `failure_gallery.py` | Contact sheet of the worst counting errors, with every counted building outlined and numbered |
 
 Protocol: FloodNet uses the 5 image-level CV folds of `vqa_full.csv`, fitting on 4 folds and scoring the 5th. AIFloodSense fits on its train split and scores its test split. LADI has no masks, so it waits for the segmenter. Rows whose answers were themselves derived from the dataset's masks (`answer_source = mask`) are excluded from mask-based scoring, since scoring them would be circular.
@@ -29,13 +30,15 @@ Counting by intent (oracle, exact / ±1): total 76.5 / 91.6, non-flooded 81.9 / 
 
 Without blob splitting, flooded counting is 56.4 / 83.9. Splitting merged blobs (component > 1.5 × the 75th-percentile area → round(area / reference)) is selected on the training folds for flooded and total counts.
 
-| AIFloodSense test (43 VQA images + 99 label rows) | Blind prior | Oracle: GT masks → rules |
+| AIFloodSense test (43 VQA images + 99 label rows) | Blind prior | Oracle: GT masks → rules (fit on AIF train) |
 |---|---|---|
 | Count total (exact / ±1) | 27.9 / 27.9 | 27.9 / 48.8 |
 | Count flooded | — | 34.9 / 44.2 |
 | Count non-flooded | — | 65.1 / 76.7 |
 | Yes/No (sky, buildings, flooded) | 75.0 | 97.8 |
 | Environment rural/urban | 62.6 | 73.7 |
+
+With thresholds fitted on FloodNet only (zero-shot), the AIFloodSense oracle is essentially unchanged: 79.0% overall; count total 30.2 / 46.5, flooded 37.2 / 51.2. The rules transfer; the masks are the hard part.
 
 LADI v2 test, blind prior: yes/no 80.5, condition 50.0 (balanced by construction).
 
@@ -44,7 +47,7 @@ LADI v2 test, blind prior: yes/no 80.5, condition 50.0 (balanced by construction
 1. **Blind priors are high on FloodNet:** 84% condition and 82% yes/no without looking at the image. The ~97% that every method reports is only 13–15 points above blind; counting is where methods actually differ.
 2. **With perfect masks, simple rules double the best published counting accuracy (76–78% vs 37%) and reach 92% overall.** The pipeline's ceiling is therefore set by segmentation quality, and the segmenter is where effort should go.
 3. **Flooded-building counts are hardest** (63% even with GT masks). Flooded neighbourhoods are dense, and touching roofs merge into one component.
-4. **On oblique global imagery (AIFloodSense), mask counting fails even with GT masks**: 28% total, the same as the blind prior. Causes from `failure_gallery.py` (`out/aifloodsense/fail_count_total_masks_gt.jpg`):
+4. **On oblique global imagery (AIFloodSense), mask counting fails even with GT masks**: 28% total, the same as the blind prior. Causes from `failure_gallery.py` (`out/aifloodsense/fail_count_total_masks_gt.jpg`; regenerate with the new default `masks_gt_own`):
    - distant small buildings fall under the min-area filter (image 142: 7 counted vs 71 true);
    - rows of buildings merge into one region in oblique views (114: 22 vs 49; 321: 17 vs 59);
    - some masks omit buildings entirely (411: answer 15, no building pixels).
@@ -56,7 +59,10 @@ LADI v2 test, blind prior: yes/no 80.5, condition 50.0 (balanced by construction
 
 ```bash
 python answering/run_masks.py floodnet --labels runs/seg_oof/preds    # full pipeline, same folds
-python answering/failure_gallery.py floodnet count_flooded --preds answering/out/floodnet/masks_preds.jsonl
+python answering/failure_gallery.py floodnet count_flooded --preds answering/out/floodnet/masks_preds_own.jsonl
+# other datasets, with the all-data segmenter (CPU):
+python answering/predict_cpu.py aifloodsense && python answering/run_masks.py aifloodsense --labels answering/out/aifloodsense/preds_seg_all --fit floodnet
+python answering/predict_cpu.py ladi_v2 && python answering/run_masks.py ladi_v2 --labels answering/out/ladi_v2/preds_seg_all --fit own
 ```
 
 The gap between `masks_gt` and `masks_preds` is the segmentation error, and the gap between `masks_gt` and 100% is the reasoning plus label noise. Both feed the ablation table.
