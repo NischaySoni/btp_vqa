@@ -58,8 +58,6 @@ Guidelines:
 
 ## AI-generated set: remaining steps (need a working GPU)
 
-GPU 6 (A6000) is reserved for these steps. GPUs 0/1/3/5/7 run the segmenter folds, GPU 2 belongs to another user and GPU 4 is faulted. The shell profile sets `CUDA_VISIBLE_DEVICES=0`, so always override it.
-
 ```bash
 CUDA_VISIBLE_DEVICES=6 python flood_datasets/ai_generated/make_specs.py              # Qwen2.5-7B-Instruct, ~66 articles -> up to 3 scenes each
 CUDA_VISIBLE_DEVICES=6 /media/data_dump/Anwar/btp_gen_venv/bin/python flood_datasets/ai_generated/generate.py --seeds 2   # SDXL, 2 images/spec
