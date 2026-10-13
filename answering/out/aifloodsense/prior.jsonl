@@ -1,0 +1,654 @@
+{"qid": 130, "pred": "25 to 50%"}
+{"qid": 131, "pred": 0}
+{"qid": 132, "pred": "urban"}
+{"qid": 133, "pred": "no"}
+{"qid": 134, "pred": "yes"}
+{"qid": 135, "pred": 0}
+{"qid": 136, "pred": 0}
+{"qid": 137, "pred": "yes"}
+{"qid": 138, "pred": "yes"}
+{"qid": 139, "pred": "flooded"}
+{"qid": 256, "pred": "25 to 50%"}
+{"qid": 257, "pred": "no"}
+{"qid": 258, "pred": "urban"}
+{"qid": 259, "pred": "yes"}
+{"qid": 270, "pred": "25 to 50%"}
+{"qid": 271, "pred": 0}
+{"qid": 272, "pred": "urban"}
+{"qid": 273, "pred": "no"}
+{"qid": 274, "pred": "yes"}
+{"qid": 275, "pred": 0}
+{"qid": 276, "pred": 0}
+{"qid": 277, "pred": "yes"}
+{"qid": 278, "pred": "yes"}
+{"qid": 279, "pred": "flooded"}
+{"qid": 290, "pred": "25 to 50%"}
+{"qid": 291, "pred": 0}
+{"qid": 292, "pred": "urban"}
+{"qid": 293, "pred": "no"}
+{"qid": 294, "pred": "yes"}
+{"qid": 295, "pred": 0}
+{"qid": 296, "pred": 0}
+{"qid": 297, "pred": "yes"}
+{"qid": 298, "pred": "yes"}
+{"qid": 299, "pred": "flooded"}
+{"qid": 314, "pred": "25 to 50%"}
+{"qid": 315, "pred": 0}
+{"qid": 316, "pred": "urban"}
+{"qid": 317, "pred": "no"}
+{"qid": 318, "pred": "yes"}
+{"qid": 319, "pred": 0}
+{"qid": 320, "pred": 0}
+{"qid": 321, "pred": "yes"}
+{"qid": 322, "pred": "yes"}
+{"qid": 323, "pred": "flooded"}
+{"qid": 324, "pred": "25 to 50%"}
+{"qid": 325, "pred": "no"}
+{"qid": 326, "pred": "urban"}
+{"qid": 327, "pred": "yes"}
+{"qid": 328, "pred": "25 to 50%"}
+{"qid": 329, "pred": "no"}
+{"qid": 330, "pred": "urban"}
+{"qid": 331, "pred": "yes"}
+{"qid": 414, "pred": "25 to 50%"}
+{"qid": 415, "pred": "no"}
+{"qid": 416, "pred": "urban"}
+{"qid": 417, "pred": "yes"}
+{"qid": 418, "pred": "25 to 50%"}
+{"qid": 419, "pred": "no"}
+{"qid": 420, "pred": "urban"}
+{"qid": 421, "pred": "yes"}
+{"qid": 432, "pred": "25 to 50%"}
+{"qid": 433, "pred": 0}
+{"qid": 434, "pred": "urban"}
+{"qid": 435, "pred": "no"}
+{"qid": 436, "pred": "yes"}
+{"qid": 437, "pred": 0}
+{"qid": 438, "pred": 0}
+{"qid": 439, "pred": "yes"}
+{"qid": 440, "pred": "yes"}
+{"qid": 441, "pred": "flooded"}
+{"qid": 508, "pred": "25 to 50%"}
+{"qid": 509, "pred": "no"}
+{"qid": 510, "pred": "urban"}
+{"qid": 511, "pred": "yes"}
+{"qid": 536, "pred": "25 to 50%"}
+{"qid": 537, "pred": "no"}
+{"qid": 538, "pred": "urban"}
+{"qid": 539, "pred": "yes"}
+{"qid": 640, "pred": "25 to 50%"}
+{"qid": 641, "pred": "no"}
+{"qid": 642, "pred": "urban"}
+{"qid": 643, "pred": "yes"}
+{"qid": 654, "pred": "25 to 50%"}
+{"qid": 655, "pred": "no"}
+{"qid": 656, "pred": "urban"}
+{"qid": 657, "pred": "yes"}
+{"qid": 700, "pred": "25 to 50%"}
+{"qid": 701, "pred": "no"}
+{"qid": 702, "pred": "urban"}
+{"qid": 703, "pred": "yes"}
+{"qid": 708, "pred": "25 to 50%"}
+{"qid": 709, "pred": "no"}
+{"qid": 710, "pred": "urban"}
+{"qid": 711, "pred": "yes"}
+{"qid": 712, "pred": "25 to 50%"}
+{"qid": 713, "pred": "no"}
+{"qid": 714, "pred": "urban"}
+{"qid": 715, "pred": "yes"}
+{"qid": 730, "pred": "25 to 50%"}
+{"qid": 731, "pred": "no"}
+{"qid": 732, "pred": "urban"}
+{"qid": 733, "pred": "yes"}
+{"qid": 754, "pred": "25 to 50%"}
+{"qid": 755, "pred": "no"}
+{"qid": 756, "pred": "urban"}
+{"qid": 757, "pred": "yes"}
+{"qid": 758, "pred": "25 to 50%"}
+{"qid": 759, "pred": "no"}
+{"qid": 760, "pred": "urban"}
+{"qid": 761, "pred": "yes"}
+{"qid": 810, "pred": "25 to 50%"}
+{"qid": 811, "pred": 0}
+{"qid": 812, "pred": "urban"}
+{"qid": 813, "pred": "no"}
+{"qid": 814, "pred": "yes"}
+{"qid": 815, "pred": 0}
+{"qid": 816, "pred": 0}
+{"qid": 817, "pred": "yes"}
+{"qid": 818, "pred": "yes"}
+{"qid": 819, "pred": "flooded"}
+{"qid": 890, "pred": "25 to 50%"}
+{"qid": 891, "pred": 0}
+{"qid": 892, "pred": "urban"}
+{"qid": 893, "pred": "no"}
+{"qid": 894, "pred": "yes"}
+{"qid": 895, "pred": 0}
+{"qid": 896, "pred": 0}
+{"qid": 897, "pred": "yes"}
+{"qid": 898, "pred": "yes"}
+{"qid": 899, "pred": "flooded"}
+{"qid": 900, "pred": "25 to 50%"}
+{"qid": 901, "pred": 0}
+{"qid": 902, "pred": "urban"}
+{"qid": 903, "pred": "no"}
+{"qid": 904, "pred": "yes"}
+{"qid": 905, "pred": 0}
+{"qid": 906, "pred": 0}
+{"qid": 907, "pred": "yes"}
+{"qid": 908, "pred": "yes"}
+{"qid": 909, "pred": "flooded"}
+{"qid": 920, "pred": "25 to 50%"}
+{"qid": 921, "pred": 0}
+{"qid": 922, "pred": "urban"}
+{"qid": 923, "pred": "no"}
+{"qid": 924, "pred": "yes"}
+{"qid": 925, "pred": 0}
+{"qid": 926, "pred": 0}
+{"qid": 927, "pred": "yes"}
+{"qid": 928, "pred": "yes"}
+{"qid": 929, "pred": "flooded"}
+{"qid": 930, "pred": "25 to 50%"}
+{"qid": 931, "pred": 0}
+{"qid": 932, "pred": "urban"}
+{"qid": 933, "pred": "no"}
+{"qid": 934, "pred": "yes"}
+{"qid": 935, "pred": 0}
+{"qid": 936, "pred": 0}
+{"qid": 937, "pred": "yes"}
+{"qid": 938, "pred": "yes"}
+{"qid": 939, "pred": "flooded"}
+{"qid": 952, "pred": "25 to 50%"}
+{"qid": 953, "pred": "no"}
+{"qid": 954, "pred": "urban"}
+{"qid": 955, "pred": "yes"}
+{"qid": 980, "pred": "25 to 50%"}
+{"qid": 981, "pred": 0}
+{"qid": 982, "pred": "urban"}
+{"qid": 983, "pred": "no"}
+{"qid": 984, "pred": "yes"}
+{"qid": 985, "pred": 0}
+{"qid": 986, "pred": 0}
+{"qid": 987, "pred": "yes"}
+{"qid": 988, "pred": "yes"}
+{"qid": 989, "pred": "flooded"}
+{"qid": 1000, "pred": "25 to 50%"}
+{"qid": 1001, "pred": "no"}
+{"qid": 1002, "pred": "urban"}
+{"qid": 1003, "pred": "yes"}
+{"qid": 1018, "pred": "25 to 50%"}
+{"qid": 1019, "pred": 0}
+{"qid": 1020, "pred": "urban"}
+{"qid": 1021, "pred": "no"}
+{"qid": 1022, "pred": "yes"}
+{"qid": 1023, "pred": 0}
+{"qid": 1024, "pred": 0}
+{"qid": 1025, "pred": "yes"}
+{"qid": 1026, "pred": "yes"}
+{"qid": 1027, "pred": "flooded"}
+{"qid": 1038, "pred": "25 to 50%"}
+{"qid": 1039, "pred": "no"}
+{"qid": 1040, "pred": "urban"}
+{"qid": 1041, "pred": "yes"}
+{"qid": 1042, "pred": "25 to 50%"}
+{"qid": 1043, "pred": "no"}
+{"qid": 1044, "pred": "urban"}
+{"qid": 1045, "pred": "yes"}
+{"qid": 1092, "pred": "25 to 50%"}
+{"qid": 1093, "pred": 0}
+{"qid": 1094, "pred": "urban"}
+{"qid": 1095, "pred": "no"}
+{"qid": 1096, "pred": "yes"}
+{"qid": 1097, "pred": 0}
+{"qid": 1098, "pred": 0}
+{"qid": 1099, "pred": "yes"}
+{"qid": 1100, "pred": "yes"}
+{"qid": 1101, "pred": "flooded"}
+{"qid": 1214, "pred": "25 to 50%"}
+{"qid": 1215, "pred": 0}
+{"qid": 1216, "pred": "urban"}
+{"qid": 1217, "pred": "no"}
+{"qid": 1218, "pred": "yes"}
+{"qid": 1219, "pred": 0}
+{"qid": 1220, "pred": 0}
+{"qid": 1221, "pred": "yes"}
+{"qid": 1222, "pred": "yes"}
+{"qid": 1223, "pred": "flooded"}
+{"qid": 1328, "pred": "25 to 50%"}
+{"qid": 1329, "pred": "no"}
+{"qid": 1330, "pred": "urban"}
+{"qid": 1331, "pred": "yes"}
+{"qid": 1376, "pred": "25 to 50%"}
+{"qid": 1377, "pred": "no"}
+{"qid": 1378, "pred": "urban"}
+{"qid": 1379, "pred": "yes"}
+{"qid": 1410, "pred": "25 to 50%"}
+{"qid": 1411, "pred": "no"}
+{"qid": 1412, "pred": "urban"}
+{"qid": 1413, "pred": "yes"}
+{"qid": 1438, "pred": "25 to 50%"}
+{"qid": 1439, "pred": 0}
+{"qid": 1440, "pred": "urban"}
+{"qid": 1441, "pred": "no"}
+{"qid": 1442, "pred": "yes"}
+{"qid": 1443, "pred": 0}
+{"qid": 1444, "pred": 0}
+{"qid": 1445, "pred": "yes"}
+{"qid": 1446, "pred": "yes"}
+{"qid": 1447, "pred": "flooded"}
+{"qid": 1490, "pred": "25 to 50%"}
+{"qid": 1491, "pred": 0}
+{"qid": 1492, "pred": "urban"}
+{"qid": 1493, "pred": "no"}
+{"qid": 1494, "pred": "yes"}
+{"qid": 1495, "pred": 0}
+{"qid": 1496, "pred": 0}
+{"qid": 1497, "pred": "yes"}
+{"qid": 1498, "pred": "yes"}
+{"qid": 1499, "pred": "flooded"}
+{"qid": 1520, "pred": "25 to 50%"}
+{"qid": 1521, "pred": 0}
+{"qid": 1522, "pred": "urban"}
+{"qid": 1523, "pred": "no"}
+{"qid": 1524, "pred": "yes"}
+{"qid": 1525, "pred": 0}
+{"qid": 1526, "pred": 0}
+{"qid": 1527, "pred": "yes"}
+{"qid": 1528, "pred": "yes"}
+{"qid": 1529, "pred": "flooded"}
+{"qid": 1540, "pred": "25 to 50%"}
+{"qid": 1541, "pred": "no"}
+{"qid": 1542, "pred": "urban"}
+{"qid": 1543, "pred": "yes"}
+{"qid": 1544, "pred": "25 to 50%"}
+{"qid": 1545, "pred": "no"}
+{"qid": 1546, "pred": "urban"}
+{"qid": 1547, "pred": "yes"}
+{"qid": 1576, "pred": "25 to 50%"}
+{"qid": 1577, "pred": "no"}
+{"qid": 1578, "pred": "urban"}
+{"qid": 1579, "pred": "yes"}
+{"qid": 1620, "pred": "25 to 50%"}
+{"qid": 1621, "pred": 0}
+{"qid": 1622, "pred": "urban"}
+{"qid": 1623, "pred": "no"}
+{"qid": 1624, "pred": "yes"}
+{"qid": 1625, "pred": 0}
+{"qid": 1626, "pred": 0}
+{"qid": 1627, "pred": "yes"}
+{"qid": 1628, "pred": "yes"}
+{"qid": 1629, "pred": "flooded"}
+{"qid": 1678, "pred": "25 to 50%"}
+{"qid": 1679, "pred": 0}
+{"qid": 1680, "pred": "urban"}
+{"qid": 1681, "pred": "no"}
+{"qid": 1682, "pred": "yes"}
+{"qid": 1683, "pred": 0}
+{"qid": 1684, "pred": 0}
+{"qid": 1685, "pred": "yes"}
+{"qid": 1686, "pred": "yes"}
+{"qid": 1687, "pred": "flooded"}
+{"qid": 1692, "pred": "25 to 50%"}
+{"qid": 1693, "pred": 0}
+{"qid": 1694, "pred": "urban"}
+{"qid": 1695, "pred": "no"}
+{"qid": 1696, "pred": "yes"}
+{"qid": 1697, "pred": 0}
+{"qid": 1698, "pred": 0}
+{"qid": 1699, "pred": "yes"}
+{"qid": 1700, "pred": "yes"}
+{"qid": 1701, "pred": "flooded"}
+{"qid": 1722, "pred": "25 to 50%"}
+{"qid": 1723, "pred": 0}
+{"qid": 1724, "pred": "urban"}
+{"qid": 1725, "pred": "no"}
+{"qid": 1726, "pred": "yes"}
+{"qid": 1727, "pred": 0}
+{"qid": 1728, "pred": 0}
+{"qid": 1729, "pred": "yes"}
+{"qid": 1730, "pred": "yes"}
+{"qid": 1731, "pred": "flooded"}
+{"qid": 1756, "pred": "25 to 50%"}
+{"qid": 1757, "pred": 0}
+{"qid": 1758, "pred": "urban"}
+{"qid": 1759, "pred": "no"}
+{"qid": 1760, "pred": "yes"}
+{"qid": 1761, "pred": 0}
+{"qid": 1762, "pred": 0}
+{"qid": 1763, "pred": "yes"}
+{"qid": 1764, "pred": "yes"}
+{"qid": 1765, "pred": "flooded"}
+{"qid": 1786, "pred": "25 to 50%"}
+{"qid": 1787, "pred": 0}
+{"qid": 1788, "pred": "urban"}
+{"qid": 1789, "pred": "no"}
+{"qid": 1790, "pred": "yes"}
+{"qid": 1791, "pred": 0}
+{"qid": 1792, "pred": 0}
+{"qid": 1793, "pred": "yes"}
+{"qid": 1794, "pred": "yes"}
+{"qid": 1795, "pred": "flooded"}
+{"qid": 1846, "pred": "25 to 50%"}
+{"qid": 1847, "pred": 0}
+{"qid": 1848, "pred": "urban"}
+{"qid": 1849, "pred": "no"}
+{"qid": 1850, "pred": "yes"}
+{"qid": 1851, "pred": 0}
+{"qid": 1852, "pred": 0}
+{"qid": 1853, "pred": "yes"}
+{"qid": 1854, "pred": "yes"}
+{"qid": 1855, "pred": "flooded"}
+{"qid": 1988, "pred": "25 to 50%"}
+{"qid": 1989, "pred": "no"}
+{"qid": 1990, "pred": "urban"}
+{"qid": 1991, "pred": "yes"}
+{"qid": 1992, "pred": "25 to 50%"}
+{"qid": 1993, "pred": "no"}
+{"qid": 1994, "pred": "urban"}
+{"qid": 1995, "pred": "yes"}
+{"qid": 2030, "pred": "25 to 50%"}
+{"qid": 2031, "pred": 0}
+{"qid": 2032, "pred": "urban"}
+{"qid": 2033, "pred": "no"}
+{"qid": 2034, "pred": "yes"}
+{"qid": 2035, "pred": 0}
+{"qid": 2036, "pred": 0}
+{"qid": 2037, "pred": "yes"}
+{"qid": 2038, "pred": "yes"}
+{"qid": 2039, "pred": "flooded"}
+{"qid": 2064, "pred": "25 to 50%"}
+{"qid": 2065, "pred": 0}
+{"qid": 2066, "pred": "urban"}
+{"qid": 2067, "pred": "no"}
+{"qid": 2068, "pred": "yes"}
+{"qid": 2069, "pred": 0}
+{"qid": 2070, "pred": 0}
+{"qid": 2071, "pred": "yes"}
+{"qid": 2072, "pred": "yes"}
+{"qid": 2073, "pred": "flooded"}
+{"qid": 2104, "pred": "25 to 50%"}
+{"qid": 2105, "pred": "no"}
+{"qid": 2106, "pred": "urban"}
+{"qid": 2107, "pred": "yes"}
+{"qid": 2118, "pred": "25 to 50%"}
+{"qid": 2119, "pred": 0}
+{"qid": 2120, "pred": "urban"}
+{"qid": 2121, "pred": "no"}
+{"qid": 2122, "pred": "yes"}
+{"qid": 2123, "pred": 0}
+{"qid": 2124, "pred": 0}
+{"qid": 2125, "pred": "yes"}
+{"qid": 2126, "pred": "yes"}
+{"qid": 2127, "pred": "flooded"}
+{"qid": 2128, "pred": "25 to 50%"}
+{"qid": 2129, "pred": "no"}
+{"qid": 2130, "pred": "urban"}
+{"qid": 2131, "pred": "yes"}
+{"qid": 2166, "pred": "25 to 50%"}
+{"qid": 2167, "pred": 0}
+{"qid": 2168, "pred": "urban"}
+{"qid": 2169, "pred": "no"}
+{"qid": 2170, "pred": "yes"}
+{"qid": 2171, "pred": 0}
+{"qid": 2172, "pred": 0}
+{"qid": 2173, "pred": "yes"}
+{"qid": 2174, "pred": "yes"}
+{"qid": 2175, "pred": "flooded"}
+{"qid": 2176, "pred": "25 to 50%"}
+{"qid": 2177, "pred": 0}
+{"qid": 2178, "pred": "urban"}
+{"qid": 2179, "pred": "no"}
+{"qid": 2180, "pred": "yes"}
+{"qid": 2181, "pred": 0}
+{"qid": 2182, "pred": 0}
+{"qid": 2183, "pred": "yes"}
+{"qid": 2184, "pred": "yes"}
+{"qid": 2185, "pred": "flooded"}
+{"qid": 2272, "pred": "25 to 50%"}
+{"qid": 2273, "pred": "no"}
+{"qid": 2274, "pred": "urban"}
+{"qid": 2275, "pred": "yes"}
+{"qid": 2326, "pred": "25 to 50%"}
+{"qid": 2327, "pred": 0}
+{"qid": 2328, "pred": "urban"}
+{"qid": 2329, "pred": "no"}
+{"qid": 2330, "pred": "yes"}
+{"qid": 2331, "pred": 0}
+{"qid": 2332, "pred": 0}
+{"qid": 2333, "pred": "yes"}
+{"qid": 2334, "pred": "yes"}
+{"qid": 2335, "pred": "flooded"}
+{"qid": 2366, "pred": "25 to 50%"}
+{"qid": 2367, "pred": "no"}
+{"qid": 2368, "pred": "urban"}
+{"qid": 2369, "pred": "yes"}
+{"qid": 2394, "pred": "25 to 50%"}
+{"qid": 2395, "pred": "no"}
+{"qid": 2396, "pred": "urban"}
+{"qid": 2397, "pred": "yes"}
+{"qid": 2478, "pred": "25 to 50%"}
+{"qid": 2479, "pred": "no"}
+{"qid": 2480, "pred": "urban"}
+{"qid": 2481, "pred": "yes"}
+{"qid": 2534, "pred": "25 to 50%"}
+{"qid": 2535, "pred": 0}
+{"qid": 2536, "pred": "urban"}
+{"qid": 2537, "pred": "no"}
+{"qid": 2538, "pred": "yes"}
+{"qid": 2539, "pred": 0}
+{"qid": 2540, "pred": 0}
+{"qid": 2541, "pred": "yes"}
+{"qid": 2542, "pred": "yes"}
+{"qid": 2543, "pred": "flooded"}
+{"qid": 2586, "pred": "25 to 50%"}
+{"qid": 2587, "pred": "no"}
+{"qid": 2588, "pred": "urban"}
+{"qid": 2589, "pred": "yes"}
+{"qid": 2590, "pred": "25 to 50%"}
+{"qid": 2591, "pred": 0}
+{"qid": 2592, "pred": "urban"}
+{"qid": 2593, "pred": "no"}
+{"qid": 2594, "pred": "yes"}
+{"qid": 2595, "pred": 0}
+{"qid": 2596, "pred": 0}
+{"qid": 2597, "pred": "yes"}
+{"qid": 2598, "pred": "yes"}
+{"qid": 2599, "pred": "flooded"}
+{"qid": 2600, "pred": "25 to 50%"}
+{"qid": 2601, "pred": "no"}
+{"qid": 2602, "pred": "urban"}
+{"qid": 2603, "pred": "yes"}
+{"qid": 2614, "pred": "25 to 50%"}
+{"qid": 2615, "pred": "no"}
+{"qid": 2616, "pred": "urban"}
+{"qid": 2617, "pred": "yes"}
+{"qid": 2682, "pred": "25 to 50%"}
+{"qid": 2683, "pred": "no"}
+{"qid": 2684, "pred": "urban"}
+{"qid": 2685, "pred": "yes"}
+{"qid": 2710, "pred": "25 to 50%"}
+{"qid": 2711, "pred": "no"}
+{"qid": 2712, "pred": "urban"}
+{"qid": 2713, "pred": "yes"}
+{"qid": 2748, "pred": "25 to 50%"}
+{"qid": 2749, "pred": "no"}
+{"qid": 2750, "pred": "urban"}
+{"qid": 2751, "pred": "yes"}
+{"qid": 2772, "pred": "25 to 50%"}
+{"qid": 2773, "pred": "no"}
+{"qid": 2774, "pred": "urban"}
+{"qid": 2775, "pred": "yes"}
+{"qid": 2786, "pred": "25 to 50%"}
+{"qid": 2787, "pred": 0}
+{"qid": 2788, "pred": "urban"}
+{"qid": 2789, "pred": "no"}
+{"qid": 2790, "pred": "yes"}
+{"qid": 2791, "pred": 0}
+{"qid": 2792, "pred": 0}
+{"qid": 2793, "pred": "yes"}
+{"qid": 2794, "pred": "yes"}
+{"qid": 2795, "pred": "flooded"}
+{"qid": 2830, "pred": "25 to 50%"}
+{"qid": 2831, "pred": "no"}
+{"qid": 2832, "pred": "urban"}
+{"qid": 2833, "pred": "yes"}
+{"qid": 2834, "pred": "25 to 50%"}
+{"qid": 2835, "pred": "no"}
+{"qid": 2836, "pred": "urban"}
+{"qid": 2837, "pred": "yes"}
+{"qid": 2856, "pred": "25 to 50%"}
+{"qid": 2857, "pred": "no"}
+{"qid": 2858, "pred": "urban"}
+{"qid": 2859, "pred": "yes"}
+{"qid": 2874, "pred": "25 to 50%"}
+{"qid": 2875, "pred": "no"}
+{"qid": 2876, "pred": "urban"}
+{"qid": 2877, "pred": "yes"}
+{"qid": 2916, "pred": "25 to 50%"}
+{"qid": 2917, "pred": "no"}
+{"qid": 2918, "pred": "urban"}
+{"qid": 2919, "pred": "yes"}
+{"qid": 2942, "pred": "25 to 50%"}
+{"qid": 2943, "pred": 0}
+{"qid": 2944, "pred": "urban"}
+{"qid": 2945, "pred": "no"}
+{"qid": 2946, "pred": "yes"}
+{"qid": 2947, "pred": 0}
+{"qid": 2948, "pred": 0}
+{"qid": 2949, "pred": "yes"}
+{"qid": 2950, "pred": "yes"}
+{"qid": 2951, "pred": "flooded"}
+{"qid": 3030, "pred": "25 to 50%"}
+{"qid": 3031, "pred": "no"}
+{"qid": 3032, "pred": "urban"}
+{"qid": 3033, "pred": "yes"}
+{"qid": 3078, "pred": "25 to 50%"}
+{"qid": 3079, "pred": "no"}
+{"qid": 3080, "pred": "urban"}
+{"qid": 3081, "pred": "yes"}
+{"qid": 3130, "pred": "25 to 50%"}
+{"qid": 3131, "pred": "no"}
+{"qid": 3132, "pred": "urban"}
+{"qid": 3133, "pred": "yes"}
+{"qid": 3144, "pred": "25 to 50%"}
+{"qid": 3145, "pred": "no"}
+{"qid": 3146, "pred": "urban"}
+{"qid": 3147, "pred": "yes"}
+{"qid": 3148, "pred": "25 to 50%"}
+{"qid": 3149, "pred": "no"}
+{"qid": 3150, "pred": "urban"}
+{"qid": 3151, "pred": "yes"}
+{"qid": 3166, "pred": "25 to 50%"}
+{"qid": 3167, "pred": 0}
+{"qid": 3168, "pred": "urban"}
+{"qid": 3169, "pred": "no"}
+{"qid": 3170, "pred": "yes"}
+{"qid": 3171, "pred": 0}
+{"qid": 3172, "pred": 0}
+{"qid": 3173, "pred": "yes"}
+{"qid": 3174, "pred": "yes"}
+{"qid": 3175, "pred": "flooded"}
+{"qid": 3176, "pred": "25 to 50%"}
+{"qid": 3177, "pred": 0}
+{"qid": 3178, "pred": "urban"}
+{"qid": 3179, "pred": "no"}
+{"qid": 3180, "pred": "yes"}
+{"qid": 3181, "pred": 0}
+{"qid": 3182, "pred": 0}
+{"qid": 3183, "pred": "yes"}
+{"qid": 3184, "pred": "yes"}
+{"qid": 3185, "pred": "flooded"}
+{"qid": 3186, "pred": "25 to 50%"}
+{"qid": 3187, "pred": 0}
+{"qid": 3188, "pred": "urban"}
+{"qid": 3189, "pred": "no"}
+{"qid": 3190, "pred": "yes"}
+{"qid": 3191, "pred": 0}
+{"qid": 3192, "pred": 0}
+{"qid": 3193, "pred": "yes"}
+{"qid": 3194, "pred": "yes"}
+{"qid": 3195, "pred": "flooded"}
+{"qid": 3224, "pred": "25 to 50%"}
+{"qid": 3225, "pred": "no"}
+{"qid": 3226, "pred": "urban"}
+{"qid": 3227, "pred": "yes"}
+{"qid": 3256, "pred": "25 to 50%"}
+{"qid": 3257, "pred": 0}
+{"qid": 3258, "pred": "urban"}
+{"qid": 3259, "pred": "no"}
+{"qid": 3260, "pred": "yes"}
+{"qid": 3261, "pred": 0}
+{"qid": 3262, "pred": 0}
+{"qid": 3263, "pred": "yes"}
+{"qid": 3264, "pred": "yes"}
+{"qid": 3265, "pred": "flooded"}
+{"qid": 3270, "pred": "25 to 50%"}
+{"qid": 3271, "pred": 0}
+{"qid": 3272, "pred": "urban"}
+{"qid": 3273, "pred": "no"}
+{"qid": 3274, "pred": "yes"}
+{"qid": 3275, "pred": 0}
+{"qid": 3276, "pred": 0}
+{"qid": 3277, "pred": "yes"}
+{"qid": 3278, "pred": "yes"}
+{"qid": 3279, "pred": "flooded"}
+{"qid": 3280, "pred": "25 to 50%"}
+{"qid": 3281, "pred": 0}
+{"qid": 3282, "pred": "urban"}
+{"qid": 3283, "pred": "no"}
+{"qid": 3284, "pred": "yes"}
+{"qid": 3285, "pred": 0}
+{"qid": 3286, "pred": 0}
+{"qid": 3287, "pred": "yes"}
+{"qid": 3288, "pred": "yes"}
+{"qid": 3289, "pred": "flooded"}
+{"qid": 3336, "pred": "25 to 50%"}
+{"qid": 3337, "pred": 0}
+{"qid": 3338, "pred": "urban"}
+{"qid": 3339, "pred": "no"}
+{"qid": 3340, "pred": "yes"}
+{"qid": 3341, "pred": 0}
+{"qid": 3342, "pred": 0}
+{"qid": 3343, "pred": "yes"}
+{"qid": 3344, "pred": "yes"}
+{"qid": 3345, "pred": "flooded"}
+{"qid": 3346, "pred": "25 to 50%"}
+{"qid": 3347, "pred": 0}
+{"qid": 3348, "pred": "urban"}
+{"qid": 3349, "pred": "no"}
+{"qid": 3350, "pred": "yes"}
+{"qid": 3351, "pred": 0}
+{"qid": 3352, "pred": 0}
+{"qid": 3353, "pred": "yes"}
+{"qid": 3354, "pred": "yes"}
+{"qid": 3355, "pred": "flooded"}
+{"qid": 3356, "pred": "25 to 50%"}
+{"qid": 3357, "pred": 0}
+{"qid": 3358, "pred": "urban"}
+{"qid": 3359, "pred": "no"}
+{"qid": 3360, "pred": "yes"}
+{"qid": 3361, "pred": 0}
+{"qid": 3362, "pred": 0}
+{"qid": 3363, "pred": "yes"}
+{"qid": 3364, "pred": "yes"}
+{"qid": 3365, "pred": "flooded"}
+{"qid": 3396, "pred": "25 to 50%"}
+{"qid": 3397, "pred": "no"}
+{"qid": 3398, "pred": "urban"}
+{"qid": 3399, "pred": "yes"}
+{"qid": 3586, "pred": "25 to 50%"}
+{"qid": 3587, "pred": "no"}
+{"qid": 3588, "pred": "urban"}
+{"qid": 3589, "pred": "yes"}
+{"qid": 3590, "pred": "25 to 50%"}
+{"qid": 3591, "pred": "no"}
+{"qid": 3592, "pred": "urban"}
+{"qid": 3593, "pred": "yes"}
+{"qid": 3602, "pred": "25 to 50%"}
+{"qid": 3603, "pred": "no"}
+{"qid": 3604, "pred": "urban"}
+{"qid": 3605, "pred": "yes"}
+{"qid": 3626, "pred": "25 to 50%"}
+{"qid": 3627, "pred": "no"}
+{"qid": 3628, "pred": "urban"}
+{"qid": 3629, "pred": "yes"}

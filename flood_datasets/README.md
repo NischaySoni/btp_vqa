@@ -18,10 +18,11 @@ Report accuracy separately per `answer_source`. Only `human` and `label` answers
 
 | Dataset | Role | Images | QA pairs | Answers | Build |
 |---|---|---|---|---|---|
+| **FloodNet** (official images, answered train split) | main benchmark, 5-fold CV via `meta.fold` | 1,445 | 4,497 | human (original FloodNet answers, from `vqa_full.csv`) | `python flood_datasets/floodnet/build_qa.py` |
 | **AIFloodSense** (global aerial, 64 countries, 2022–24) | cross-dataset test | 470 | 3,644 | 5 official human-verified questions on 294 images; flood extent from masks; sky / environment labels | `python flood_datasets/aifloodsense/build_qa.py` |
 | **LADI v2** val + test (CAP aircraft, oblique, US) | cross-dataset test, flood vs ordinary water | 494 (247 flooded, 123 hard negatives with ordinary water, 124 other negatives) | 3,952 | FEMA-trained annotators' labels, yes/no and condition only | `python flood_datasets/ladi_v2/build_qa.py` |
 | **web_real** (ours, Wikimedia Commons, real photos) | own real dataset | 721 candidates ready to annotate (760 downloaded, 39 near-duplicates / non-photos removed) | after annotation | human, 2 annotators | `collect_commons.py` → `--download` → `dedupe.py` → `annotate.py` → `build_qa.py` |
-| **ai_generated** (ours, from Wikinews articles) | own synthetic dataset, robustness / failure analysis | 66 articles fetched; specs + images pending a GPU | after human check | intended by design, verified by humans | `fetch_news.py` → `make_specs.py` → `generate.py` → `annotate.py --dir flood_datasets/ai_generated` |
+| **ai_generated** (ours, from Wikinews articles) | own synthetic dataset, robustness / failure analysis | 66 articles → 68 scene specs (`make_specs.py --scenes scenes_claude.json`); 136 images pending a GPU | after human check | intended by design, verified by humans | `fetch_news.py` → `make_specs.py` → `generate.py` → `annotate.py --dir flood_datasets/ai_generated` |
 
 ## Sources and licences
 

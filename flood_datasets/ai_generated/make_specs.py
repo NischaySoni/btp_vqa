@@ -1,8 +1,9 @@
-"""Usage: python flood_datasets/ai_generated/make_specs.py [--per_article 3] [--seed 0] [--limit 0]
+"""Usage: python flood_datasets/ai_generated/make_specs.py [--scenes scenes_claude.json] [--per_article 3] [--seed 0] [--limit 0]
 Step 2 of the AI-generated set: news.jsonl -> specs.jsonl (one row per image to generate).
 A local LLM (Qwen2.5-7B-Instruct; GPU if available, else all CPU cores) reads each Wikinews article and extracts up to
 3 visually concrete flood scenes (place, setting, building style, how the water looks, a supporting quote), or none if
-the article describes no physical scene. The attributes that carry VQA answers (viewpoint, number of buildings, how
+the article describes no physical scene. With --scenes, scenes are read from a JSON file ({article index: [scene...]})
+instead, e.g. scenes_claude.json, extracted by Claude under the same rules while the GPUs were unavailable. The attributes that carry VQA answers (viewpoint, number of buildings, how
 many are flooded, road condition) are then sampled with a fixed seed so answers are balanced and known by design.
 These intended answers are only provisional: generators do not follow counts reliably, so every generated image is
 re-checked by humans with web_real/annotate.py before it enters qa.jsonl."""
@@ -73,7 +74,9 @@ def prompt(sc, at):
     setting = sc.get("setting", "rural")
     core = f"{at['viewpoint']} photo, exactly {n} {bt} ({'one building' if n == 1 else f'{n} buildings'}), {flood}, {road}, {sky}"
     flooded_scene = fl > 0 or at["road"] == "flooded"           # flood extras would contradict a dry scene
-    for extra in (f", {setting} {sc.get('place', '')}, {sc.get('country', '')}, {sc.get('extras', '')}, realistic news photo"
+    extras = ", ".join(e.strip() for e in sc.get("extras", "").split(",")    # road-ish extras only if the road is flooded
+                       if at["road"] == "flooded" or not re.search(r"road|street|highway|lane|bridge|traffic", e))
+    for extra in (f", {setting} {sc.get('place', '')}, {sc.get('country', '')}, {extras}, realistic news photo"
                   if flooded_scene else None,
                   f", {setting} {sc.get('place', '')}, {sc.get('country', '')}, realistic news photo",
                   ", realistic news photo", ""):
@@ -82,12 +85,15 @@ def prompt(sc, at):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--per_article", type=int, default=3)
-    ap.add_argument("--seed", type=int, default=0); ap.add_argument("--limit", type=int, default=0); a = ap.parse_args()
+    ap.add_argument("--seed", type=int, default=0); ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--scenes", default=""); a = ap.parse_args()
     news = [json.loads(l) for l in open(f"{HERE}/news.jsonl")][: a.limit or None]
-    ask, rng, rows = llm(), random.Random(a.seed), []
+    given = json.load(open(a.scenes if os.path.isabs(a.scenes) else f"{HERE}/{a.scenes}")) if a.scenes else None
+    ask, rng, rows = (None if given else llm()), random.Random(a.seed), []
     out = open(f"{HERE}/specs.jsonl", "w")
     for k, art in enumerate(news):
-        scenes = parse(ask(ASK.format(n=a.per_article, title=art["title"], date=art["date"], text=art["text"][:6000])))
+        scenes = (given.get(str(k), []) if given else
+                  parse(ask(ASK.format(n=a.per_article, title=art["title"], date=art["date"], text=art["text"][:6000]))))
         for j, sc in enumerate(scenes[: a.per_article]):
             at = sample(rng)
             r = dict(id=f"g{k:03d}_{j}", article=art["title"], url=art["url"], scene=sc, attributes=at,

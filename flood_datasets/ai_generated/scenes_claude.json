@@ -1,0 +1,137 @@
+{
+ "_about": "Scene extraction for make_specs.py --scenes, written by Claude (Opus 5.5) from news.jsonl on 2026-10-13 under the same rules as the LLM prompt in make_specs.ASK: only facts stated in the article, short visual phrases, a supporting quote, [] when the article describes no physical flood scene. Keys are article indices (line numbers of news.jsonl).",
+ "0": [
+  {"place": "Fitzroy Crossing", "country": "Australia", "setting": "rural", "building_type": "single-storey remote town houses", "water": "wide brown river floodwater", "extras": "closed bridge, flooded airstrip", "quote": "the Fitzroy River ... reaching a water level of 15.81 meters"},
+  {"place": "Kimberley region", "country": "Australia", "setting": "rural", "building_type": "isolated community houses", "water": "muddy red-brown floodwater", "extras": "inundated airstrip, flooded highway", "quote": "the airstrip inundated"}],
+ "1": [
+  {"place": "Karnataka village", "country": "India", "setting": "rural", "building_type": "brick and tiled village houses", "water": "muddy brown flash-flood water", "extras": "ruined crop fields, blocked road", "quote": "The waters have also ruined crops, blocked roads"},
+  {"place": "Andhra Pradesh village", "country": "India", "setting": "rural", "building_type": "damaged village homes", "water": "brown floodwater", "extras": "army helicopter overhead", "quote": "The rains damaged or destroyed thousands of homes"}],
+ "2": [
+  {"place": "Miyi County, Panzhihua", "country": "China", "setting": "rural", "building_type": "two-storey concrete village houses", "water": "fast muddy floodwater", "extras": "destroyed farmland, damaged bridge", "quote": "houses, roads, bridges, and farmland were destroyed"}],
+ "3": [
+  {"place": "Ghardaia, M'zab Valley", "country": "Algeria", "setting": "urban", "building_type": "flat-roofed earthen desert houses", "water": "brown wadi floodwater", "extras": "helicopter, flooded valley floor", "quote": "Six hundred homes were also flooded"},
+  {"place": "M'zab Valley", "country": "Algeria", "setting": "rural", "building_type": "pale flat-roofed houses", "water": "overflowing wadi river", "extras": "date palms", "quote": "storms that flooded a seasonal river, known locally as a wadi"}],
+ "4": [
+  {"place": "Maranhao", "country": "Brazil", "setting": "rural", "building_type": "small brick houses with clay roofs", "water": "brown overland river floodwater", "extras": "submerged highway", "quote": "overland flooding that has destroyed homes in the region"},
+  {"place": "northeastern Brazil town", "country": "Brazil", "setting": "urban", "building_type": "low colourful town houses", "water": "muddy floodwater", "extras": "landslide blocking road", "quote": "landslides that have blocked roads, including 6 major highways"}],
+ "5": [
+  {"place": "Dadaab refugee camp", "country": "Kenya", "setting": "rural", "building_type": "refugee camp tents and huts", "water": "muddy rainwater pools", "extras": "sandy tracks", "quote": "refugees in Kenya's overcrowded Dadaab camps"}],
+ "6": [
+  {"place": "Jeddah", "country": "Saudi Arabia", "setting": "urban", "building_type": "beige concrete apartment blocks", "water": "brown storm floodwater", "extras": "swept-away cars, flooded city road", "quote": "Many cars had been swept away and city roads were flooded"}],
+ "7": [
+  {"place": "Andhra Pradesh farmland", "country": "India", "setting": "rural", "building_type": "farmhouses with tin roofs", "water": "flooded rice paddies", "extras": "submerged crops", "quote": "Rice and other crops in an area of 260,000 hectares"}],
+ "8": [
+  {"place": "Mandailing Natal Regency", "country": "Indonesia", "setting": "rural", "building_type": "wooden stilt village houses", "water": "two-metre-deep muddy floodwater", "extras": "collapsed bridge, muddy road", "quote": "soon reached a depth of two metres"}],
+ "9": [
+  {"place": "Serrana region near Rio de Janeiro", "country": "Brazil", "setting": "urban", "building_type": "hillside brick houses", "water": "muddy floodwater and mudslides", "extras": "debris from destroyed houses", "quote": "Debris from destroyed houses is littered across the area"}],
+ "10": [],
+ "11": [
+  {"place": "Coffs Harbour", "country": "Australia", "setting": "urban", "building_type": "suburban weatherboard houses", "water": "brown flash-flood water", "extras": "stranded cars", "quote": "Inland floodwaters trapped more than 1,000 residents in Coffs Harbour"},
+  {"place": "Urunga", "country": "Australia", "setting": "rural", "building_type": "single-storey coastal houses", "water": "brown floodwater", "extras": "evacuation centre", "quote": "The Red Cross flood evacuation centre in Urunga"}],
+ "12": [
+  {"place": "Hunan province", "country": "China", "setting": "rural", "building_type": "collapsed rural brick homes", "water": "muddy seasonal floodwater", "extras": "submerged fields", "quote": "140,000 homes collapsed, mostly in the provinces of Hunan and Jiangxi"}],
+ "13": [
+  {"place": "Sundarbans", "country": "India", "setting": "rural", "building_type": "mud huts with thatched roofs", "water": "brown cyclone floodwater", "extras": "uprooted trees", "quote": "countless families have been displaced, especially in the Sundarbans"}],
+ "14": [
+  {"place": "Jakarta suburb near Situ Gintung", "country": "Indonesia", "setting": "urban", "building_type": "dense red-tiled suburban houses", "water": "mud and debris flood", "extras": "broken dam wall", "quote": "Rescue efforts were hampered due to a deluge of mud and debris"}],
+ "15": [
+  {"place": "Fitzroy River near Blackwater", "country": "Australia", "setting": "rural", "building_type": "farm sheds and homesteads", "water": "rushing brown river floodwater", "extras": "flooded river crossing, trees", "quote": "leaving several people clinging to trees"}],
+ "16": [
+  {"place": "Ikitelli district, Istanbul", "country": "Turkey", "setting": "urban", "building_type": "multi-storey concrete buildings", "water": "two-metre-deep brown floodwater", "extras": "swept-away cars, flooded arterial road", "quote": "waters rose up to six feet (2 meters) high in the city's Ikitelli district"},
+  {"place": "northwestern Turkey", "country": "Turkey", "setting": "rural", "building_type": "farm houses", "water": "muddy floodwater", "extras": "swamped farmland", "quote": "swamped houses, roads, and farming land"}],
+ "17": [
+  {"place": "Khyber Pakhtunkhwa", "country": "Pakistan", "setting": "rural", "building_type": "mud-brick village houses", "water": "fast brown monsoon floodwater", "extras": "damaged roads", "quote": "destroyed homes in the country, especially in the northern province of Khyber Pakhtunkhwa"}],
+ "18": [
+  {"place": "Sao Paulo state town", "country": "Brazil", "setting": "urban", "building_type": "low concrete town houses", "water": "muddy brown floodwater", "extras": "inaccessible road", "quote": "Highways and roads have been inaccessible"}],
+ "19": [
+  {"place": "Guangdong", "country": "China", "setting": "rural", "building_type": "village houses near a dike", "water": "brown flash-flood water", "extras": "breached river dike", "quote": "flash floods breached dikes"}],
+ "20": [
+  {"place": "Nadi, Viti Levu", "country": "Fiji", "setting": "urban", "building_type": "single-storey tin-roofed houses", "water": "brown tropical floodwater", "extras": "palm trees", "quote": "a state of emergency in the city of Nadi"}],
+ "21": [
+  {"place": "Alum Rock, Birmingham", "country": "England", "setting": "urban", "building_type": "red-brick terraced houses", "water": "shallow brown street floodwater", "extras": "parked cars", "quote": "flooding on streets in Alum Rock and elsewhere in the city"}],
+ "22": [
+  {"place": "Penn Road, Wolverhampton", "country": "England", "setting": "urban", "building_type": "row of brick flats", "water": "river-like street floodwater", "extras": "cars in water", "quote": "I've never seen Penn Road like this, it's like a river"},
+  {"place": "M5 motorway near Oldbury", "country": "England", "setting": "urban", "building_type": "roadside industrial buildings", "water": "standing floodwater on lanes", "extras": "traffic jam", "quote": "Two of the M5 motorway's three northbound lanes ... flooded"}],
+ "23": [
+  {"place": "Fargo, North Dakota", "country": "United States", "setting": "urban", "building_type": "wooden suburban houses", "water": "icy brown rising river water", "extras": "sandbag walls, temporary dikes", "quote": "filling over a million sandbags in the effort to stave off the rising Red River"}],
+ "24": [
+  {"place": "Mandi, Himachal Pradesh", "country": "India", "setting": "rural", "building_type": "hillside concrete houses", "water": "torrential brown flash-flood water", "extras": "washed-out road, damaged bridge", "quote": "landslides and floods have destroyed and flooded roads, highways and bridges"}],
+ "25": [
+  {"place": "Kymi, Evvoia island", "country": "Greece", "setting": "urban", "building_type": "whitewashed Greek town houses", "water": "1.5-metre-deep brown floodwater", "extras": "collapsed bridge, swept car", "quote": "water depth had reached 1.5 metres (5 feet)"}],
+ "26": [
+  {"place": "Albert Pike Recreation Area", "country": "United States", "setting": "rural", "building_type": "campground cabins", "water": "raging forest river floodwater", "extras": "abandoned vehicles, camping gear", "quote": "estimating numbers from vehicles and camping equipment remaining"}],
+ "27": [
+  {"place": "Ilhota on the Itajai River", "country": "Brazil", "setting": "rural", "building_type": "riverside houses", "water": "brown river floodwater", "extras": "rescue boats", "quote": "Emergency workers have been using boats and helicopters"}],
+ "28": [
+  {"place": "Margit Island, Budapest", "country": "Hungary", "setting": "urban", "building_type": "riverside city buildings", "water": "high grey-green Danube floodwater", "extras": "sandbags, submerged riverside", "quote": "Margit Island is completely under water"}],
+ "29": [
+  {"place": "Singleton, Hunter region", "country": "Australia", "setting": "rural", "building_type": "country town houses", "water": "brown flooded Hunter River", "extras": "fallen power lines", "quote": "The towns of Singleton and Branxton have been the worst affected"}],
+ "30": [
+  {"place": "North Korean countryside", "country": "North Korea", "setting": "rural", "building_type": "low village houses", "water": "muddy floodwater", "extras": "inundated farmland", "quote": "Flooding due to heavy rains has devastated North Korea"}],
+ "31": [
+  {"place": "Ahr valley village", "country": "Germany", "setting": "rural", "building_type": "half-timbered village houses", "water": "fast brown Ahr floodwater", "extras": "debris, damaged house", "quote": "an entire house being carried away by flooding on the River Ahr"},
+  {"place": "village in Belgium", "country": "Belgium", "setting": "rural", "building_type": "brick village houses", "water": "deep brown floodwater", "extras": "submerged street", "quote": "entire villages were left underwater"}],
+ "32": [
+  {"place": "Greater Taung", "country": "South Africa", "setting": "rural", "building_type": "small township houses", "water": "brown floodwater", "extras": "low bridge over river", "quote": "150 homes were affected"}],
+ "33": [
+  {"place": "Zhengzhou", "country": "China", "setting": "urban", "building_type": "high-rise apartment blocks", "water": "muddy brown street floodwater", "extras": "submerged cars, inundated road", "quote": "Zhengzhou's metro system and roads were inundated with water"}],
+ "34": [
+  {"place": "Cuttack district, Orissa", "country": "India", "setting": "rural", "building_type": "thatched mud village houses", "water": "brown Mahanadi river floodwater", "extras": "people on highway, inundated crops", "quote": "hundreds of others have taken shelter on national highway"},
+  {"place": "Mahanadi river villages", "country": "India", "setting": "rural", "building_type": "marooned village huts", "water": "wide brown river water", "extras": "breached embankment", "quote": "The flood ... has marooned 191 villages"}],
+ "35": [
+  {"place": "Connaught Place, Delhi", "country": "India", "setting": "urban", "building_type": "colonnaded white commercial buildings", "water": "shallow waterlogged road", "extras": "traffic jam", "quote": "water logging and heavy traffic jams"}],
+ "36": [
+  {"place": "East Godavari district", "country": "India", "setting": "rural", "building_type": "village houses", "water": "brown floodwater", "extras": "flooded crops", "quote": "almost all their crops were destroyed by the flooding"}],
+ "37": [
+  {"place": "St. Andrews, Manitoba", "country": "Canada", "setting": "rural", "building_type": "wooden rural houses", "water": "icy overland floodwater", "extras": "ice chunks, washed-out road", "quote": "Roads are being wiped out and basements flooded"}],
+ "38": [
+  {"place": "Selkirk, Manitoba", "country": "Canada", "setting": "rural", "building_type": "riverside houses", "water": "ice-jammed Red River water", "extras": "sandbag dike, excavator on ice", "quote": "The Amphibex [Excavators] are still working and breaking the ice apart"}],
+ "39": [
+  {"place": "Red River near Selkirk", "country": "Canada", "setting": "rural", "building_type": "golf club buildings", "water": "river with giant ice blocks", "extras": "uprooted trees, vertical ice slabs", "quote": "huge pans of ice standing vertical, up to 20 feet (6 m) high"}],
+ "40": [
+  {"place": "Yangtze River lowlands", "country": "China", "setting": "rural", "building_type": "farm villages", "water": "overflowing brown river", "extras": "strained dyke", "quote": "40 rivers have risen above safe limits, stressing dykes"}],
+ "41": [
+  {"place": "Merritt, British Columbia", "country": "Canada", "setting": "urban", "building_type": "small-town houses", "water": "overflowing Coldwater River", "extras": "inundated bridge", "quote": "Flood waters inundated bridges"}],
+ "42": [
+  {"place": "Coonamble", "country": "Australia", "setting": "rural", "building_type": "outback town houses", "water": "wide brown floodwater", "extras": "closed highway", "quote": "Coonamble ... has been isolated by major flooding of the Castlereagh River"}],
+ "43": [
+  {"place": "north-central Namibia", "country": "Namibia", "setting": "rural", "building_type": "traditional thatched homesteads", "water": "shallow floodwater over fields", "extras": "submerged crop fields", "quote": "Crop fields are submerged in water"}],
+ "44": [
+  {"place": "Fort Calhoun, Nebraska", "country": "United States", "setting": "rural", "building_type": "nuclear power plant buildings", "water": "high brown Missouri River water", "extras": "flood barriers", "quote": "It sits nearly two feet below the current river level"}],
+ "45": [
+  {"place": "Fernley, Nevada", "country": "United States", "setting": "urban", "building_type": "desert suburban houses", "water": "one-metre-deep icy floodwater", "extras": "broken canal bank", "quote": "sending a nearly one-meter-high flood into the small town of Fernley"}],
+ "46": [],
+ "47": [
+  {"place": "Karnataka village", "country": "India", "setting": "rural", "building_type": "stranded village houses", "water": "brown floodwater", "extras": "relief boats", "quote": "Relief crews dispatched boats and helicopters to send rations"}],
+ "48": [],
+ "49": [
+  {"place": "Guangdong", "country": "China", "setting": "rural", "building_type": "submerged village homes", "water": "brown floodwater", "extras": "flooded paddy fields", "quote": "at least 6,000 homes have been submerged and destroyed"}],
+ "50": [
+  {"place": "Hadramaut, Yemen", "country": "Yemen", "setting": "rural", "building_type": "mud-brick desert houses", "water": "brown floodwater", "extras": "relief tents", "quote": "The Yemeni government has pledged to send tents"}],
+ "51": [
+  {"place": "Arbroath", "country": "Scotland", "setting": "urban", "building_type": "stone town houses", "water": "brown floodwater", "extras": "sandbags, flooded road", "quote": "keeping roads clear as best they can"}],
+ "52": [
+  {"place": "Cockermouth main street", "country": "England", "setting": "urban", "building_type": "Georgian stone shopfronts", "water": "several feet of brown floodwater", "extras": "rescue helicopter", "quote": "the main street in the town of Cockermouth is under several feet of water"}],
+ "53": [
+  {"place": "Palestine, Texas", "country": "United States", "setting": "urban", "building_type": "single-storey suburban houses", "water": "neck-deep brown floodwater", "extras": "people on rooftops", "quote": "causing residents of one neighborhood to flee to their rooftops"}],
+ "54": [
+  {"place": "Durban, KwaZulu-Natal", "country": "South Africa", "setting": "urban", "building_type": "hillside township houses", "water": "muddy floodwater", "extras": "damaged roads, military helicopter", "quote": "eThekwini Metropolitan Municipality was heavily damaged"}],
+ "55": [],
+ "56": [
+  {"place": "Bruhl's Terrace, Dresden", "country": "Germany", "setting": "urban", "building_type": "baroque riverside buildings", "water": "high Elbe floodwater", "extras": "TV satellite vans", "quote": "the river Elbe had risen to a level of 7.36 meters"}],
+ "57": [
+  {"place": "Ouagadougou", "country": "Burkina Faso", "setting": "urban", "building_type": "mud-brick houses", "water": "brown floodwater", "extras": "destroyed homes, broken dam", "quote": "Thousands of homes in the vicinity of Ouagadougou ... have been destroyed by the waters"}],
+ "58": [
+  {"place": "Dungog", "country": "Australia", "setting": "rural", "building_type": "weatherboard country houses", "water": "fast brown floodwater", "extras": "washed-away house, broken bridge", "quote": "severe flooding which has caused roads, bridges and houses to be washed away"}],
+ "59": [],
+ "60": [
+  {"place": "Guangdong farmland", "country": "China", "setting": "rural", "building_type": "farm houses", "water": "brown typhoon floodwater", "extras": "destroyed farmland", "quote": "Storms have also destroyed 27,160 houses and 101,000 hectares"}],
+ "61": [
+  {"place": "central Kenya", "country": "Kenya", "setting": "rural", "building_type": "small rural school buildings", "water": "brown floodwater", "extras": "damaged bridge", "quote": "Roads, bridges, and schools were heavily damaged"}],
+ "62": [],
+ "63": [],
+ "64": [
+  {"place": "Puyallup River valley", "country": "United States", "setting": "rural", "building_type": "riverside houses", "water": "overflowing grey river", "extras": "closed interstate highway", "quote": "20 miles of Interstate 5 being closed"}],
+ "65": [
+  {"place": "Pearl River Delta", "country": "China", "setting": "urban", "building_type": "dense low-rise town houses", "water": "brown floodwater", "extras": "flooded streets", "quote": "the flooding in the Pearl River Delta was the worst in the area for over fifty years"}]
+}

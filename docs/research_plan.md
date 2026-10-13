@@ -2,6 +2,9 @@
 
 Status: plan agreed 2026-10-13. Approach = segment → scene description → answer; Sen1Floods11 replaced by AIFloodSense. Step 1 (out-of-fold segmenter retrain, `seg_pipeline.py`) in progress.
 
+- **Done:** the all-data model `runs/seg_all` (SegFormer-B2 ADE-pretrained, 1024² crops of 2048-px images, 20k steps) reaches **69.0 mIoU on seg_val** (89 unseen images). The old model scored 35.7.
+- **Still to run:** the 5 out-of-fold models needed for leak-free VQA evaluation. They are blocked: GPU 4 faulted at 15:36 and `cuInit` now returns 999 for every new process (admin reset needed).
+
 ---
 
 ## 1. Related work

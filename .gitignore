@@ -14,3 +14,4 @@ flood_datasets/*/raw/
 flood_datasets/*/images/
 flood_datasets/*/*.log
 flood_datasets/web_real/crawl_titles.json
+answering/out/*/*.pkl
