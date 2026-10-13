@@ -1,0 +1,12 @@
+# data and outputs (large, not versioned)
+Images/
+Masks/
+Questions/
+FloodNet_official/
+seg_cache/
+seg_cache_2048/
+runs/
+seg_cache_official/
+__pycache__/
+*.pyc
+*.pdf
