@@ -1,2 +1,0 @@
-You passed `num_labels=10` which is incompatible to the `id2label` map of length `150`.
-25/470  10.0s/img
