@@ -42,6 +42,31 @@ With thresholds fitted on FloodNet only (zero-shot), the AIFloodSense oracle is 
 
 LADI v2 test, blind prior: yes/no 80.5, condition 50.0 (balanced by construction).
 
+### Full pipeline on the other datasets (predicted masks from `runs/seg_all`, CPU)
+
+The segmenter was trained only on FloodNet (nadir UAV, Houston). Predictions come from `predict_cpu.py` at a long side of 2048 px. *Zero-shot* = rule parameters fitted on FloodNet GT; *calibrated* = fitted on the dataset's own train/validation split.
+
+| AIFloodSense test | Blind | GT masks | Pred, zero-shot | Pred, calibrated |
+|---|---|---|---|---|
+| Is it flooded? (all test images are flooded) | 100 | 100 | **27.9** | 100 |
+| Count total (exact / ±1) | 27.9 / 27.9 | 27.9 / 48.8 | 25.6 / 34.9 | 30.2 / 39.5 |
+| Count flooded | — | 34.9 / 44.2 | 32.6 / 32.6 | 34.9 / 37.2 |
+| Buildings present? | — | 93.0 | 90.7 | 90.7 |
+| Overall (sky answered by the blind prior) | 66.5 | 79.0 | 51.1 | 65.1 |
+
+| LADI v2 test (82 flooded / 41 ordinary water / 41 dry) | Blind | Pred, zero-shot | Pred, calibrated |
+|---|---|---|---|
+| Is it flooded? | 50.0 | 57.9 | **69.5** |
+| — flooded images | | 24.4 | 81.7 |
+| — ordinary water, no flood (hard negatives) | | 90.2 | **36.6** |
+| — dry, with buildings | | 92.7 | 78.0 |
+| Buildings present? | 73.8 | 80.5 | 80.5 |
+| Any building flooded? | 92.7 | 87.8 | 91.5 |
+| Road present? | 85.4 | 78.0 | 78.0 |
+| Water present? | 75.0 | 76.8 | 76.8 |
+
+Damage questions are answered by the blind prior, because FloodNet classes have no damage notion.
+
 ### What the numbers say
 
 1. **Blind priors are high on FloodNet:** 84% condition and 82% yes/no without looking at the image. The ~97% that every method reports is only 13–15 points above blind; counting is where methods actually differ.
@@ -53,7 +78,18 @@ LADI v2 test, blind prior: yes/no 80.5, condition 50.0 (balanced by construction
    - some masks omit buildings entirely (411: answer 15, no building pixels).
 
    Counting in oblique views needs image-based instance separation (SAM-style masks or a point/density counting head), not semantic masks alone. This is a documented drawback for output 8.
-5. **FloodNet's remaining oracle counting errors are small** (`out/floodnet/fail_count_flooded_masks_gt.jpg`): about 2–6 off in very dense scenes, mostly partial buildings at the image border and small outbuildings below the area threshold.
+5. **Domain shift breaks the segmenter, and with it the pipeline** (`out/aifloodsense/pred_gallery_preds_seg_all.jpg`):
+   - Oblique and global photos get flood water labelled as plain "water" or even dry road (411, 031).
+   - Dark-roofed houses standing in water become "water" (114: 2 of ~30 buildings found).
+   - Dense villages become background (002, 142).
+   - Zero-shot flood detection therefore collapses (AIFloodSense 27.9%; LADI 24% of floods found).
+   - Calibrating thresholds on the target data recovers flood recall (LADI 82%) but then confuses ordinary rivers and lakes with floods: only 37% of hard negatives are correct.
+
+   **The 10 FloodNet classes cannot separate flood water from normal water outside FloodNet's setting.** Remedies to test:
+   - fine-tune on AIFloodSense masks (flood vs background);
+   - add a flood/no-flood image classifier as an extra feature (e.g. trained on LADI's `flooding_any`);
+   - a VLM fallback for the condition questions.
+6. **FloodNet's remaining oracle counting errors are small** (`out/floodnet/fail_count_flooded_masks_gt.jpg`): about 2–6 off in very dense scenes, mostly partial buildings at the image border and small outbuildings below the area threshold.
 
 ## Next (when the segmenter predictions exist)
 
