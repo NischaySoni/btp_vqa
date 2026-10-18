@@ -24,6 +24,80 @@ Report accuracy separately per `answer_source`. Only `human` and `label` answers
 | **web_real** (ours, Wikimedia Commons, real photos) | own real dataset | 721 candidates ready to annotate (760 downloaded, 39 near-duplicates / non-photos removed) | after annotation | human, 2 annotators | `collect_commons.py` → `--download` → `dedupe.py` → `annotate.py` → `build_qa.py` |
 | **ai_generated** (ours, from Wikinews articles) | own synthetic dataset, robustness / failure analysis | 66 articles → 68 scene specs (`make_specs.py --scenes scenes_claude.json`); 136 images pending a GPU | after human check | intended by design, verified by humans | `fetch_news.py` → `make_specs.py` → `generate.py` → `annotate.py --dir flood_datasets/ai_generated` |
 
+## Running the project
+
+Run commands from the repository root. The main experiment is FloodNet: prepare the shared QA file, prepare official images and labels for segmentation, produce out-of-fold masks, then evaluate answers. Dataset-specific setup and annotation workflows are described below.
+
+### 1. Prepare FloodNet QA and segmentation inputs
+
+`vqa_full.csv` and `flood_datasets/floodnet/qa.jsonl` are already present. Regenerate them if needed:
+
+```bash
+python build_table.py . vqa_full.csv
+python flood_datasets/floodnet/build_qa.py
+```
+
+Use the official FloodNet archive for segmentation inputs; the older `Images/` copy is truncated. After extracting the archive under `FloodNet_official/`, prepare the cache:
+
+```bash
+python seg_pipeline.py prep \
+  --root FloodNet_official/FloodNet-Supervised_v1.0 \
+  --vqa vqa_full.csv \
+  --cache seg_cache_official
+```
+
+### 2. Train and predict the five FloodNet folds
+
+The fold models must predict only images excluded from their own training data. The helper script trains folds 0, 1, 3, and 4 in parallel, predicts their held-out images, and scores the pooled masks. Set `GPUS` to four available device IDs on this machine; `CACHE` overrides its machine-specific default:
+
+```bash
+CACHE=seg_cache_official FOLDS="0 1 3 4" GPUS="1 3 5 7" ./run_seg_folds.sh
+```
+
+Train and predict fold 2 separately after a device is available:
+
+```bash
+CACHE=seg_cache_official FOLDS="2" GPUS="0" ./run_seg_folds.sh
+```
+
+The script writes checkpoints under `runs/seg_f<fold>/` and held-out masks under `runs/seg_oof/preds/`. Confirm all five checkpoints and all 1,445 prediction masks exist before continuing. The all-data checkpoint in `runs/seg_all/` is for cross-dataset experiments; it has seen FloodNet VQA images and must not be used for FloodNet held-out scoring.
+
+### 3. Evaluate FloodNet answers
+
+Run the scene-to-answer rules on the out-of-fold masks. The tool fits its parameters within each training fold and scores held-out rows:
+
+```bash
+python answering/run_masks.py floodnet --labels runs/seg_oof/preds --fit own
+python answering/evaluate.py floodnet answering/out/floodnet/masks_preds_own.jsonl --by intent
+python answering/failure_gallery.py floodnet count_flooded \
+  --preds answering/out/floodnet/masks_preds_own.jsonl
+```
+
+The blind prior baseline is available with `python answering/baselines.py`. Ground-truth-mask results (`--labels gt`) are an oracle comparison, not predicted-mask performance.
+
+### 4. Run cross-dataset evaluations
+
+The `runs/seg_all/` model is used to predict masks for datasets outside FloodNet. Prediction runs on CPU and can take time:
+
+```bash
+python answering/predict_cpu.py aifloodsense
+python answering/run_masks.py aifloodsense \
+  --labels answering/out/aifloodsense/preds_seg_all --fit floodnet
+
+python answering/predict_cpu.py ladi_v2
+python answering/run_masks.py ladi_v2 \
+  --labels answering/out/ladi_v2/preds_seg_all --fit own
+```
+
+To rebuild external-dataset QA files, first place each dataset in the raw directory described by its builder, then run:
+
+```bash
+python flood_datasets/aifloodsense/build_qa.py
+python flood_datasets/ladi_v2/build_qa.py
+```
+
+The real-photo annotation and AI-generated image workflows are in the sections below. Their QA builders write to the same schema, so use `answering/run_masks.py` and `answering/evaluate.py` where the dataset has compatible masks and labels.
+
 ## Sources and licences
 
 - **AIFloodSense:** CC BY 4.0 (dataset README). Download: Google Drive file `1dYl8aeSi_HbRFDbELEM8FWyg6zOdqLRp`, also on Kaggle (`cpanag/aifloodsense`). Cite Simantiris et al., *Remote Sensing* 2026 / arXiv 2512.17432. Its images were collected from news websites (URLs are in `meta.source_url`), so copyright of the individual photos stays with their owners. Use them for research evaluation only.

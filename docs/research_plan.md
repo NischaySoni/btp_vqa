@@ -5,6 +5,8 @@ Status: plan agreed 2026-10-13. Approach = segment → scene description → ans
 - **Done:** the all-data model `runs/seg_all` (SegFormer-B2 ADE-pretrained, 1024² crops of 2048-px images, 20k steps) reaches **69.0 mIoU on seg_val** (89 unseen images). The old model scored 35.7.
 - **Still to run:** the 5 out-of-fold models needed for leak-free VQA evaluation. They are blocked: GPU 4 faulted at 15:36 and `cuInit` now returns 999 for every new process (admin reset needed).
 
+**Environment check (2026-10-14):** the official cache and `runs/seg_all` checkpoint are present. `nvidia-smi` sees the idle GPUs (with one device-handle error), but PyTorch reports `torch.cuda.is_available() == False` and zero devices, including with `CUDA_VISIBLE_DEVICES` unset or set to individual visible GPUs. No fold checkpoints or OOF predictions exist yet. Resume only after CUDA initializes in a fresh Python process; then train folds 0–4 and predict each held-out fold into `runs/seg_oof/preds`.
+
 ---
 
 ## 1. Related work
