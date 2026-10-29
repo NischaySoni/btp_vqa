@@ -12,21 +12,25 @@ This is the reasoning half of the agreed methodology (`docs/research_plan.md` §
 | `predict_cpu.py` | Predicted FloodNet-class masks on CPU (about 15 s/image) with a trained segmenter. `runs/seg_all` is only for non-FloodNet datasets, because it trained on the FloodNet VQA images |
 | `failure_gallery.py` | Contact sheet of the worst counting errors, with every counted building outlined and numbered |
 
-Protocol: FloodNet uses the 5 image-level CV folds of `vqa_full.csv`, fitting on 4 folds and scoring the 5th. AIFloodSense fits on its train split and scores its test split. LADI has no masks, so it waits for the segmenter. Rows whose answers were themselves derived from the dataset's masks (`answer_source = mask`) are excluded from mask-based scoring, since scoring them would be circular.
+Protocol: FloodNet uses the 5 image-level CV folds of `vqa_full.csv`, fitting on 4 folds and scoring the 5th. AIFloodSense fits on its train split and scores its test split. LADI has no segmentation masks, so its predicted-mask pipeline uses the FloodNet-trained segmenter. Rows whose answers were themselves derived from the dataset's masks (`answer_source = mask`) are excluded from mask-based scoring, since scoring them would be circular.
 
-## Results so far (2026-10-13)
+## Results so far (2026-10-29)
 
 Accuracy in %. Counting cells are exact / within ±1.
 
-| FloodNet (5-fold CV, 4,497 QA) | Blind prior | **Oracle: GT masks → rules** | Kane & Khose 2022 (best published, different split) |
-|---|---|---|---|
-| Simple counting | 15.3 / 38.9 | **76.5 / 91.6** | 37.1 |
-| Complex counting | 17.9 / 44.6 | **77.8 / 93.5** | 37.4 |
-| Yes/No | 82.0 | **99.7** | 98.3 |
-| Condition recognition | 84.4 | **97.9** | 97.2–98.6 |
-| Overall | 64.0 | **92.2** | 81.3 |
+| FloodNet (5-fold CV, 4,497 QA) | Blind prior | Oracle: GT masks → rules | **OOF predicted masks → rules** | Kane & Khose 2022 (different split) |
+|---|---|---|---|---|
+| Simple counting | 15.3 / 38.9 | 76.5 / 91.6 | **39.8 / 67.9** | 37.1 |
+| Complex counting | 17.9 / 44.6 | 77.8 / 93.5 | **37.4 / 64.0** | 37.4 |
+| Yes/No | 82.0 | 99.7 | **98.7** | 98.3 |
+| Condition recognition | 84.4 | 97.9 | **97.1** | 97.2–98.6 |
+| Overall | 64.0 | 92.2 | **80.2** | 81.3 |
+
+The pooled OOF segmentation mIoU is **72.01** across all 1,445 VQA images. Per-fold QA accuracy: fold 0 79.1%, fold 1 80.8%, fold 2 81.3%, fold 3 80.0%, fold 4 79.9%.
 
 Counting by intent (oracle, exact / ±1): total 76.5 / 91.6, non-flooded 81.9 / 93.7, flooded **63.1 / 92.6**.
+
+Counting by intent (OOF predicted masks, exact / ±1): total 39.8 / 67.9, non-flooded 43.7 / 71.7, flooded **14.8 / 36.2**. The worst flooded-count cases are collected in `answering/out/floodnet/fail_count_flooded_masks_preds_own.jpg`.
 
 Without blob splitting, flooded counting is 56.4 / 83.9. Splitting merged blobs (component > 1.5 × the 75th-percentile area → round(area / reference)) is selected on the training folds for flooded and total counts.
 
@@ -91,7 +95,7 @@ Damage questions are answered by the blind prior, because FloodNet classes have 
    - a VLM fallback for the condition questions.
 6. **FloodNet's remaining oracle counting errors are small** (`out/floodnet/fail_count_flooded_masks_gt.jpg`): about 2–6 off in very dense scenes, mostly partial buildings at the image border and small outbuildings below the area threshold.
 
-## Next (when the segmenter predictions exist)
+## Next steps
 
 ```bash
 python answering/run_masks.py floodnet --labels runs/seg_oof/preds    # full pipeline, same folds
@@ -101,4 +105,4 @@ python answering/predict_cpu.py aifloodsense && python answering/run_masks.py ai
 python answering/predict_cpu.py ladi_v2 && python answering/run_masks.py ladi_v2 --labels answering/out/ladi_v2/preds_seg_all --fit own
 ```
 
-The gap between `masks_gt` and `masks_preds` is the segmentation error, and the gap between `masks_gt` and 100% is the reasoning plus label noise. Both feed the ablation table.
+FloodNet OOF predictions, scoring, and the flooded-count failure gallery are complete. Next, inspect that gallery and improve flooded-building counting; then continue the human annotation of `web_real` and generate and verify the AI-generated images. For cross-dataset runs, the AIFloodSense and LADI commands above reproduce the existing predicted-mask comparisons.
