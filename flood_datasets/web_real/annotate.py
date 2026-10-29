@@ -72,7 +72,8 @@ class H(BaseHTTPRequestHandler):
         u = urllib.parse.urlparse(self.path); q = urllib.parse.parse_qs(u.query)
         if u.path == "/": return self._send(200, PAGE.encode(), "text/html; charset=utf-8")
         if u.path == "/items":
-            items = [dict(id=r["id"], title=r["title"], description=r["description"])
+            blind_ai_review = os.path.basename(HERE) == "ai_generated"
+            items = [dict(id=r["id"], title=r["title"], description="" if blind_ai_review else r["description"])
                      for r in csv.DictReader(open(f"{HERE}/candidates.csv")) if image_file(r["id"])]
             return self._send(200, json.dumps(dict(items=items, done=read_ann(q.get("annotator", [""])[0]))).encode(),
                               "application/json")

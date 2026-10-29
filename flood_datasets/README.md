@@ -14,7 +14,7 @@ The format is defined in `common.py`: one JSON object per line in `<dataset>/qa.
 
 Report accuracy separately per `answer_source`. Only `human` and `label` answers are ground truth in the usual sense.
 
-## Status (2026-10-13)
+## Status (2026-10-29)
 
 | Dataset | Role | Images | QA pairs | Answers | Build |
 |---|---|---|---|---|---|
@@ -22,7 +22,7 @@ Report accuracy separately per `answer_source`. Only `human` and `label` answers
 | **AIFloodSense** (global aerial, 64 countries, 2022–24) | cross-dataset test | 470 | 3,644 | 5 official human-verified questions on 294 images; flood extent from masks; sky / environment labels | `python flood_datasets/aifloodsense/build_qa.py` |
 | **LADI v2** val + test (CAP aircraft, oblique, US) | cross-dataset test, flood vs ordinary water | 494 (247 flooded, 123 hard negatives with ordinary water, 124 other negatives) | 3,952 | FEMA-trained annotators' labels, yes/no and condition only | `python flood_datasets/ladi_v2/build_qa.py` |
 | **web_real** (ours, Wikimedia Commons, real photos) | own real dataset | 721 candidates ready to annotate (760 downloaded, 39 near-duplicates / non-photos removed) | after annotation | human, 2 annotators | `collect_commons.py` → `--download` → `dedupe.py` → `annotate.py` → `build_qa.py` |
-| **ai_generated** (ours, from Wikinews articles) | own synthetic dataset, robustness / failure analysis | 66 articles → 68 scene specs (`make_specs.py --scenes scenes_claude.json`); 136 images pending a GPU | after human check | intended by design, verified by humans | `fetch_news.py` → `make_specs.py` → `generate.py` → `annotate.py --dir flood_datasets/ai_generated` |
+| **ai_generated** (ours, from Wikinews articles) | own synthetic dataset, robustness / failure analysis | 66 articles → 68 scene specs; 136 images generating | after human check | intended by design, verified by humans | `fetch_news.py` → `make_specs.py` → `generate.py` → `annotate.py --dir flood_datasets/ai_generated` |
 
 ## Running the project
 
@@ -130,12 +130,25 @@ Guidelines:
 - A building counts as "flooded" if water touches it.
 - Use `many` when a count would exceed 50.
 
-## AI-generated set: remaining steps (need a working GPU)
+## AI-generated set: generation and human review
+
+Image generation is running for the 68 prepared scene specs (two seeds each). The review page uses the same annotation interface as `web_real`, on a separate port. Reviewers should record what each image actually depicts; the intended answers in the description are prompts for image generation, not ground truth.
 
 ```bash
-CUDA_VISIBLE_DEVICES=6 python flood_datasets/ai_generated/make_specs.py              # Qwen2.5-7B-Instruct, ~66 articles -> up to 3 scenes each
-CUDA_VISIBLE_DEVICES=6 /media/data_dump/Anwar/btp_gen_venv/bin/python flood_datasets/ai_generated/generate.py --seeds 2   # SDXL, 2 images/spec
-python flood_datasets/web_real/annotate.py --dir flood_datasets/ai_generated --port 8766          # humans check each image
+# The current generation run is detached in tmux; it creates 2 images per spec.
+# When restarting, select a working GPU by UUID and keep the active model cache:
+env -u LD_LIBRARY_PATH CUDA_VISIBLE_DEVICES=GPU-<uuid> \
+  HF_HOME=/media/nas_mount/anwar2/abhinay_capstone/hf_cache \
+  /media/data_dump/Anwar/btp_gen_venv/bin/python flood_datasets/ai_generated/generate.py --seeds 2
+
+# Forward port 8765 for web_real or 8766 for generated images in VS Code's Ports tab.
+# Open both pages with distinct names, for example:
+# http://localhost:8765/?annotator=reviewer1
+# http://localhost:8766/?annotator=reviewer1
+# Repeat with reviewer2. The AI review page hides the prompt and intended labels.
+
+python flood_datasets/web_real/build_qa.py --annotators reviewer1,reviewer2
+python flood_datasets/ai_generated/build_qa.py --annotators reviewer1,reviewer2
 ```
 
 - **Spec design:** the article supplies place, setting, building type and the look of the water. Viewpoint, building count (1–8), number flooded, road and sky are sampled with a fixed seed, so answers are balanced. Answer-carrying phrases come first in every prompt, and prompts are trimmed to SDXL's 77-token text window.

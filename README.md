@@ -108,9 +108,9 @@ Results below are the latest completed scores recorded in `answering/README.md` 
 | **AIFloodSense** — test | 43 VQA images plus 99 label rows; 3,644 QA overall | Overall 66.5; total count 27.9 / 27.9 | Overall **79.0**; total count 27.9 / 48.8 | Zero-shot: overall 51.1, total count 25.6 / 34.9. Calibrated: overall 65.1, total count 30.2 / 39.5 | The test VQA images are all labelled flooded: blind and calibrated flood yes/no reach 100%; zero-shot predicted masks reach 27.9%. |
 | **LADI v2** — sampled test | 82 flooded, 41 ordinary-water hard negatives, 41 dry images; 3,952 QA overall | Flood yes/no 50.0 | Not available — no segmentation masks | Flood yes/no: **57.9** zero-shot, **69.5** calibrated. Flooded-image recall / hard-negative accuracy: 24.4 / 90.2 zero-shot; 81.7 / 36.6 calibrated. | Calibration improves flood recall but confuses ordinary water with flood. |
 | **web_real** — candidate set | 721 deduplicated candidates; annotation not completed | — | — | — | No QA evaluation results yet. |
-| **ai_generated** — planned robustness set | 68 scene specs from 66 articles; images not generated | — | — | — | No human-verified images or QA evaluation results yet. |
+| **ai_generated** — planned robustness set | 68 scene specs from 66 articles; 136 images generating | — | — | — | Human image review and QA evaluation remain pending. |
 
-The FloodNet blind/oracle/predicted comparison is now complete. Watershed splitting raises OOF flooded-building count accuracy from 14.8% to 19.5% exact and from 36.2% to 45.0% within ±1; MAE drops from 3.89 to 2.31. Ground-truth-mask oracle remains higher at 63.1% / 92.6%. The cross-dataset rows show substantial domain shift; web_real annotation and ai_generated image generation are still pending.
+The FloodNet blind/oracle/predicted comparison is now complete. Watershed splitting raises OOF flooded-building count accuracy from 14.8% to 19.5% exact and from 36.2% to 45.0% within ±1; MAE drops from 3.89 to 2.31. Ground-truth-mask oracle remains higher at 63.1% / 92.6%. The cross-dataset rows show substantial domain shift. The web_real annotation page is ready; AI image generation is underway and human review remains pending.
 
 ## Sources and licences
 
