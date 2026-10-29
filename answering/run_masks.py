@@ -27,10 +27,10 @@ FLOODNET_CLASSES_CANNOT = {"sky_yn", "building_damage_yn", "road_damage_yn"}
 def _init(): os.sched_setaffinity(0, range(os.cpu_count()))   # forked workers here inherit a 2-core mask
 
 def _scene(args):
-    path, kind = args
-    return S.load(path, kind) if os.path.exists(path) else None
+    path, kind, flooded_watershed_md = args
+    return S.load(path, kind, flooded_watershed_md) if os.path.exists(path) else None
 
-def scenes_for(dataset, qa, labels, workers):
+def scenes_for(dataset, qa, labels, workers, flooded_watershed_md=None):
     ids = sorted({r["image_id"] for r in qa})
     if labels == "gt" and dataset == "floodnet":
         paths, kind = {i: f"{ROOT}/seg_cache_official/lab/{i}.png" for i in ids}, "floodnet"
@@ -42,12 +42,15 @@ def scenes_for(dataset, qa, labels, workers):
     else:
         d = labels if os.path.isabs(labels) else f"{ROOT}/{labels}"; paths, kind = {i: f"{d}/{i}.png" for i in ids}, "floodnet"
     tag = "gt" if labels == "gt" else os.path.basename(os.path.normpath(labels))
+    if flooded_watershed_md is not None: tag += f"_fws{flooded_watershed_md}"
     cache = f"{ROOT}/answering/out/{dataset}/scenes_{tag}.pkl"
     if os.path.exists(cache):
         sc = pickle.load(open(cache, "rb"))
         if all(i in sc for i in ids): return sc, tag, kind
+    watershed_ids = {r["image_id"] for r in qa if r["intent"] == "count_flooded"}
     with Pool(workers, initializer=_init) as p:
-        sc = dict(zip(ids, p.map(_scene, [(paths[i], kind) for i in ids], chunksize=8)))
+        sc = dict(zip(ids, p.map(_scene, [(paths[i], kind,
+                                          flooded_watershed_md if i in watershed_ids else None) for i in ids], chunksize=8)))
     os.makedirs(os.path.dirname(cache), exist_ok=True); pickle.dump(sc, open(cache, "wb"))
     return sc, tag, kind
 
@@ -62,8 +65,13 @@ def fit_rows(qa, sc, rows, intent):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("dataset", choices=["floodnet", "aifloodsense", "ladi_v2"])
     ap.add_argument("--labels", default="gt"); ap.add_argument("--fit", choices=["own", "floodnet"], default="own")
-    ap.add_argument("--workers", type=int, default=12); a = ap.parse_args()
-    qa = load_qa(a.dataset); sc, tag, kind = scenes_for(a.dataset, qa, a.labels, a.workers)
+    ap.add_argument("--workers", type=int, default=12)
+    ap.add_argument("--flooded-watershed-md", type=int, default=None,
+                    help="split predicted flooded-building blobs at quarter resolution (FloodNet experimental option)")
+    a = ap.parse_args()
+    if a.flooded_watershed_md is not None and (a.dataset != "floodnet" or a.labels == "gt"):
+        ap.error("--flooded-watershed-md applies only to predicted FloodNet masks")
+    qa = load_qa(a.dataset); sc, tag, kind = scenes_for(a.dataset, qa, a.labels, a.workers, a.flooded_watershed_md)
     use = [i for i, r in enumerate(qa) if r["answer_source"] != "mask"]
     if a.dataset == "floodnet":
         groups = [([i for i in use if qa[i]["meta"]["fold"] != k], [i for i in use if qa[i]["meta"]["fold"] == k])

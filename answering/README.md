@@ -18,19 +18,21 @@ Protocol: FloodNet uses the 5 image-level CV folds of `vqa_full.csv`, fitting on
 
 Accuracy in %. Counting cells are exact / within ±1.
 
-| FloodNet (5-fold CV, 4,497 QA) | Blind prior | Oracle: GT masks → rules | **OOF predicted masks → rules** | Kane & Khose 2022 (different split) |
+| FloodNet (5-fold CV, 4,497 QA) | Blind prior | Oracle: GT masks → rules | **OOF predicted masks + flooded watershed → rules** | Kane & Khose 2022 (different split) |
 |---|---|---|---|---|
 | Simple counting | 15.3 / 38.9 | 76.5 / 91.6 | **39.8 / 67.9** | 37.1 |
-| Complex counting | 17.9 / 44.6 | 77.8 / 93.5 | **37.4 / 64.0** | 37.4 |
+| Complex counting | 17.9 / 44.6 | 77.8 / 93.5 | **38.5 / 65.9** | 37.4 |
 | Yes/No | 82.0 | 99.7 | **98.7** | 98.3 |
 | Condition recognition | 84.4 | 97.9 | **97.1** | 97.2–98.6 |
-| Overall | 64.0 | 92.2 | **80.2** | 81.3 |
+| Overall | 64.0 | 92.2 | **80.3** | 81.3 |
 
-The pooled OOF segmentation mIoU is **72.01** across all 1,445 VQA images. Per-fold QA accuracy: fold 0 79.1%, fold 1 80.8%, fold 2 81.3%, fold 3 80.0%, fold 4 79.9%.
+The pooled OOF segmentation mIoU is **72.01** across all 1,445 VQA images. Per-fold QA accuracy with watershed: fold 0 79.2%, fold 1 81.1%, fold 2 81.2%, fold 3 80.4%, fold 4 79.9%.
 
 Counting by intent (oracle, exact / ±1): total 76.5 / 91.6, non-flooded 81.9 / 93.7, flooded **63.1 / 92.6**.
 
-Counting by intent (OOF predicted masks, exact / ±1): total 39.8 / 67.9, non-flooded 43.7 / 71.7, flooded **14.8 / 36.2**. The worst flooded-count cases are collected in `answering/out/floodnet/fail_count_flooded_masks_preds_own.jpg`.
+Counting by intent (OOF predicted masks with watershed, exact / ±1): total 39.8 / 67.9, non-flooded 43.7 / 71.7, flooded **19.5 / 45.0**. The pooled count MAE falls from 3.89 to 2.31 for flooded buildings. The worst cases are collected in `answering/out/floodnet/fail_count_flooded_masks_preds_fws12_own.jpg`.
+
+The watershed option splits predicted flooded-building regions at a quarter-resolution minimum peak distance of 12 pixels. It is selected only for flooded-building counts; all other intents use the original connected-component scenes. Without watershed, flooded counts score 14.8% exact / 36.2% within ±1, and overall QA accuracy is 80.2% (65.9% within ±1 for counts, MAE 2.01). With watershed, these become 19.5% / 45.0%, 80.3%, and 66.9% / 1.83.
 
 Without blob splitting, flooded counting is 56.4 / 83.9. Splitting merged blobs (component > 1.5 × the 75th-percentile area → round(area / reference)) is selected on the training folds for flooded and total counts.
 
@@ -98,11 +100,12 @@ Damage questions are answered by the blind prior, because FloodNet classes have 
 ## Next steps
 
 ```bash
-python answering/run_masks.py floodnet --labels runs/seg_oof/preds    # full pipeline, same folds
-python answering/failure_gallery.py floodnet count_flooded --preds answering/out/floodnet/masks_preds_own.jsonl
+python answering/run_masks.py floodnet --labels runs/seg_oof/preds --fit own --flooded-watershed-md 12
+python answering/evaluate.py floodnet answering/out/floodnet/masks_preds_fws12_own.jsonl --by fold
+python answering/failure_gallery.py floodnet count_flooded --preds answering/out/floodnet/masks_preds_fws12_own.jsonl
 # other datasets, with the all-data segmenter (CPU):
 python answering/predict_cpu.py aifloodsense && python answering/run_masks.py aifloodsense --labels answering/out/aifloodsense/preds_seg_all --fit floodnet
 python answering/predict_cpu.py ladi_v2 && python answering/run_masks.py ladi_v2 --labels answering/out/ladi_v2/preds_seg_all --fit own
 ```
 
-FloodNet OOF predictions, scoring, and the flooded-count failure gallery are complete. Next, inspect that gallery and improve flooded-building counting; then continue the human annotation of `web_real` and generate and verify the AI-generated images. For cross-dataset runs, the AIFloodSense and LADI commands above reproduce the existing predicted-mask comparisons.
+FloodNet OOF predictions, scoring, and a watershed-based flooded-count improvement are complete. The next data tasks are human annotation of `web_real` and generation plus human verification of the AI-generated images. For cross-dataset runs, the AIFloodSense and LADI commands above reproduce the existing predicted-mask comparisons.

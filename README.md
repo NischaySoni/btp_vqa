@@ -67,10 +67,10 @@ The script writes checkpoints under `runs/seg_f<fold>/` and held-out masks under
 Run the scene-to-answer rules on the out-of-fold masks. The tool fits its parameters within each training fold and scores held-out rows:
 
 ```bash
-python answering/run_masks.py floodnet --labels runs/seg_oof/preds --fit own
-python answering/evaluate.py floodnet answering/out/floodnet/masks_preds_own.jsonl --by intent
+python answering/run_masks.py floodnet --labels runs/seg_oof/preds --fit own --flooded-watershed-md 12
+python answering/evaluate.py floodnet answering/out/floodnet/masks_preds_fws12_own.jsonl --by intent
 python answering/failure_gallery.py floodnet count_flooded \
-  --preds answering/out/floodnet/masks_preds_own.jsonl
+  --preds answering/out/floodnet/masks_preds_fws12_own.jsonl
 ```
 
 The blind prior baseline is available with `python answering/baselines.py`. Ground-truth-mask results (`--labels gt`) are an oracle comparison, not predicted-mask performance.
@@ -100,17 +100,17 @@ The real-photo annotation and AI-generated image workflows are in the sections b
 
 ## Results comparison
 
-Results below are the latest completed scores recorded in `answering/README.md` (2026-10-29). Accuracy is percentage. Count scores are **exact / within ±1**. “Oracle” uses ground-truth masks, so it is an upper bound for perception rather than an end-to-end image result. FloodNet's five-fold out-of-fold run is complete: 1,445 masks, pooled segmentation mIoU 72.01, and end-to-end QA accuracy 80.2%.
+Results below are the latest completed scores recorded in `answering/README.md` (2026-10-29). Accuracy is percentage. Count scores are **exact / within ±1**. “Oracle” uses ground-truth masks, so it is an upper bound for perception rather than an end-to-end image result. FloodNet's five-fold out-of-fold run is complete: 1,445 masks, pooled segmentation mIoU 72.01, and end-to-end QA accuracy 80.3% with watershed splitting for flooded-building counts.
 
 | Dataset and evaluation split | Coverage | Blind baseline | Ground-truth-mask oracle | Predicted-mask pipeline | Readout |
 |---|---|---|---|---|---|
-| **FloodNet** — 5-fold CV | 4,497 QA / 1,445 images | Overall **64.0**; simple count 15.3 / 38.9; complex count 17.9 / 44.6 | Overall **92.2**; simple count 76.5 / 91.6; complex count 77.8 / 93.5; yes/no 99.7; condition 97.9 | Overall **80.2**; simple count 39.8 / 67.9; complex count 37.4 / 64.0; yes/no 98.7; condition 97.1. Pooled mask mIoU: 72.01. | OOF predictions across all five folds; published Kane & Khose reference: 81.3 overall (different split). |
+| **FloodNet** — 5-fold CV | 4,497 QA / 1,445 images | Overall **64.0**; simple count 15.3 / 38.9; complex count 17.9 / 44.6 | Overall **92.2**; simple count 76.5 / 91.6; complex count 77.8 / 93.5; yes/no 99.7; condition 97.9 | Overall **80.3**; simple count 39.8 / 67.9; complex count 38.5 / 65.9; yes/no 98.7; condition 97.1. Pooled mask mIoU: 72.01. | OOF predictions use watershed splitting for flooded-building blobs; published Kane & Khose reference: 81.3 overall (different split). |
 | **AIFloodSense** — test | 43 VQA images plus 99 label rows; 3,644 QA overall | Overall 66.5; total count 27.9 / 27.9 | Overall **79.0**; total count 27.9 / 48.8 | Zero-shot: overall 51.1, total count 25.6 / 34.9. Calibrated: overall 65.1, total count 30.2 / 39.5 | The test VQA images are all labelled flooded: blind and calibrated flood yes/no reach 100%; zero-shot predicted masks reach 27.9%. |
 | **LADI v2** — sampled test | 82 flooded, 41 ordinary-water hard negatives, 41 dry images; 3,952 QA overall | Flood yes/no 50.0 | Not available — no segmentation masks | Flood yes/no: **57.9** zero-shot, **69.5** calibrated. Flooded-image recall / hard-negative accuracy: 24.4 / 90.2 zero-shot; 81.7 / 36.6 calibrated. | Calibration improves flood recall but confuses ordinary water with flood. |
 | **web_real** — candidate set | 721 deduplicated candidates; annotation not completed | — | — | — | No QA evaluation results yet. |
 | **ai_generated** — planned robustness set | 68 scene specs from 66 articles; images not generated | — | — | — | No human-verified images or QA evaluation results yet. |
 
-The FloodNet blind/oracle/predicted comparison is now complete. Flooded-building counting remains the main weakness: OOF accuracy is 14.8% exact / 36.2% within ±1, compared with 63.1% / 92.6% using ground-truth masks. The cross-dataset rows show substantial domain shift; web_real annotation and ai_generated image generation are still pending.
+The FloodNet blind/oracle/predicted comparison is now complete. Watershed splitting raises OOF flooded-building count accuracy from 14.8% to 19.5% exact and from 36.2% to 45.0% within ±1; MAE drops from 3.89 to 2.31. Ground-truth-mask oracle remains higher at 63.1% / 92.6%. The cross-dataset rows show substantial domain shift; web_real annotation and ai_generated image generation are still pending.
 
 ## Sources and licences
 

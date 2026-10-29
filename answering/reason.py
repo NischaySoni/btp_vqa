@@ -34,9 +34,10 @@ DERIVED = {"building_flooded_yn": "count_flooded"}              # yes iff that c
 
 def count(scene, intent, p):
     min_area, q, t = p if isinstance(p, (tuple, list)) else (p, None, None)
-    sel = [a for a, _ in COUNTS[intent](scene["buildings"]) if a >= min_area]
+    buildings = scene.get("buildings_flooded_ws", scene["buildings"]) if intent == "count_flooded" else scene["buildings"]
+    sel = [a for a, _ in COUNTS[intent](buildings) if a >= min_area]
     if q is None or not sel: return len(sel)
-    ref = np.percentile([a for a, _ in scene["buildings"] if a >= min_area], q)
+    ref = np.percentile([a for a, _ in buildings if a >= min_area], q)
     return int(sum(max(1, round(a / ref)) if a > t * ref else 1 for a in sel))
 
 def supported(intent): return intent in COUNTS or intent in DERIVED or intent in FEATURES

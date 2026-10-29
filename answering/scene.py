@@ -9,6 +9,8 @@ Instance areas are image shares, so one min-area threshold works at any resoluti
 import numpy as np
 from PIL import Image
 from scipy import ndimage as ndi
+from skimage.feature import peak_local_max
+from skimage.segmentation import watershed
 
 FLOODNET = ["background", "building_flooded", "building_nonflooded", "road_flooded", "road_nonflooded",
             "water", "tree", "vehicle", "pool", "grass"]
@@ -18,13 +20,34 @@ def _instances(mask, valid):
     lab, n = ndi.label(mask)
     return np.bincount(lab.ravel())[1:] / valid if n else np.zeros(0), lab
 
-def floodnet_scene(lab):
+def floodnet_scene(lab, flooded_watershed_md=None):
     lab = np.asarray(lab); ok = lab != 255; valid = max(ok.sum(), 1)
     frac = {c: float((lab == i).sum() / valid) for i, c in enumerate(FLOODNET)}
     b = []
     for i, fl in ((1, True), (2, False)):
         areas, _ = _instances(lab == i, valid); b += [(float(a), fl) for a in areas]
-    return dict(frac=frac, buildings=b, hw=lab.shape)
+    out = dict(frac=frac, buildings=b, hw=lab.shape)
+    if flooded_watershed_md is not None:
+        # Split merged predicted flooded-building blobs at a quarter resolution to
+        # estimate individual roofs without changing the other class instances.
+        small = lab[::4, ::4]; mask = small == 1; valid_small = max(int((small != 255).sum()), 1)
+        cc, n = ndi.label(mask); dist = ndi.distance_transform_edt(mask)
+        coords = peak_local_max(dist, min_distance=flooded_watershed_md,
+                                labels=cc, exclude_border=False)
+        markers = np.zeros(mask.shape, dtype=np.int32)
+        if len(coords): markers[tuple(coords.T)] = np.arange(1, len(coords) + 1)
+        nmarkers = int(markers.max())
+        for component in range(1, n + 1):
+            if not np.any(markers[cc == component]):
+                y, x = np.unravel_index(np.argmax(np.where(cc == component, dist, -1)), mask.shape)
+                nmarkers += 1; markers[y, x] = nmarkers
+        if nmarkers:
+            ws = watershed(-dist, markers, mask=mask)
+            areas = np.bincount(ws.ravel())[1:] / valid_small
+        else:
+            areas = np.zeros(0)
+        out["buildings_flooded_ws"] = [(float(a), True) for a in areas]
+    return out
 
 def aif_scene(mask, touch=0.01):
     m = np.asarray(mask); valid = m.size
@@ -34,6 +57,6 @@ def aif_scene(mask, touch=0.01):
     flooded = np.bincount(lab[near].ravel(), minlength=len(areas) + 1)[1:] > 0 if len(areas) else []
     return dict(frac=frac, buildings=[(float(a), bool(f)) for a, f in zip(areas, flooded)], hw=m.shape)
 
-def load(path, kind):
+def load(path, kind, flooded_watershed_md=None):
     im = Image.open(path)
-    return floodnet_scene(im) if kind == "floodnet" else aif_scene(im)
+    return (floodnet_scene(im, flooded_watershed_md) if kind == "floodnet" else aif_scene(im))
